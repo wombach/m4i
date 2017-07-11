@@ -5,16 +5,16 @@
 import express = require("express");
 import HeroBusiness = require("./../app/business/HeroBusiness");
 import IBaseController = require("./BaseController");
-import IHeroModel = require("./../app/model/interfaces/HeroModel");
+import IProjectModel = require("./../app/model/interfaces/ProjectModel");
 
 class HeroController implements IBaseController <HeroBusiness> {
 
     create(req: express.Request, res: express.Response): void {
         try {
 
-            var hero: IHeroModel = <IHeroModel>req.body;
+            var project: IProjectModel = <IProjectModel>req.body;
             var heroBusiness = new HeroBusiness();
-            heroBusiness.create(hero, (error, result) => {
+            heroBusiness.create(project, (error, result) => {
                 if(error) res.send({"error": "error"});
                 else res.send({"success": "success"});
             });
@@ -27,10 +27,10 @@ class HeroController implements IBaseController <HeroBusiness> {
     }
     update(req: express.Request, res: express.Response): void {
         try {
-            var hero: IHeroModel = <IHeroModel>req.body;
+            var project: IProjectModel = <IProjectModel>req.body;
             var _id: string = req.params._id;
             var heroBusiness = new HeroBusiness();
-            heroBusiness.update(_id, hero, (error, result) => {
+            heroBusiness.update(_id, project, (error, result) => {
                 if(error) res.send({"error": "error"});
                 else res.send({"success": "success"});
             });

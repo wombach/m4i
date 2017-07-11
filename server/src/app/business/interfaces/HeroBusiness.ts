@@ -3,9 +3,9 @@
  */
 
 import BaseBusiness = require("./../BaseBusiness");
-import IHeroModel = require("./../../model/interfaces/HeroModel");
+import IProjectModel = require("./../../model/interfaces/ProjectModel");
 
-interface HeroBusiness extends BaseBusiness<IHeroModel> {
+interface ProjectBusiness extends BaseBusiness<IProjectModel> {
 
 }
-export = HeroBusiness;
+export = ProjectBusiness;

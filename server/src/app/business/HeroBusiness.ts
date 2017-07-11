@@ -4,8 +4,8 @@
 
 import HeroRepository = require("./../repository/HeroRepository");
 import IHeroBusiness = require("./interfaces/HeroBusiness");
-import IHeroModel = require("./../model/interfaces/HeroModel");
-import HeroModel = require("./../model/HeroModel");
+import IProjectModel = require("./../model/interfaces/ProjectModel");
+import ProjectModel = require("./../model/ProjectModel");
 
 
 class HeroBusiness implements IHeroBusiness {
@@ -15,7 +15,7 @@ class HeroBusiness implements IHeroBusiness {
         this._heroRepository = new HeroRepository();
     }
 
-    create (item: IHeroModel, callback: (error: any, result: any) => void) {
+    create (item: IProjectModel, callback: (error: any, result: any) => void) {
         this._heroRepository.create(item, callback);
     }
 
@@ -23,7 +23,7 @@ class HeroBusiness implements IHeroBusiness {
         this._heroRepository.retrieve(callback);
     }
 
-    update (_id: string, item: IHeroModel, callback: (error: any, result: any) => void) {
+    update (_id: string, item: IProjectModel, callback: (error: any, result: any) => void) {
 
         this._heroRepository.findById(_id, (err, res) => {
             if(err) callback(err, res);
@@ -38,7 +38,7 @@ class HeroBusiness implements IHeroBusiness {
         this._heroRepository.delete(_id , callback);
     }
 
-    findById (_id: string, callback: (error: any, result: IHeroModel) => void) {
+    findById (_id: string, callback: (error: any, result: IProjectModel) => void) {
         this._heroRepository.findById(_id, callback);
     }
 

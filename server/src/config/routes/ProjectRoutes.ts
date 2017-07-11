@@ -3,17 +3,17 @@
  */
 
 import express = require("express");
-import HeroController = require("./../../controllers/HeroController");
+import ProjectController = require("./../../controllers/ProjectController");
 
 var router = express.Router();
-class HeroRoutes {
-    private _heroController: HeroController;
+class ProjectRoutes {
+    private _projectController: ProjectController;
 
     constructor () {
-        this._heroController = new HeroController();
+        this._projectController = new ProjectController();
     }
     get routes () {
-        var controller = this._heroController;
+        var controller = this._projectController;
 
         router.get("/heroes", controller.retrieve);
         router.post("/heroes", controller.create);
@@ -27,5 +27,5 @@ class HeroRoutes {
 
 }
 
-Object.seal(HeroRoutes);
-export = HeroRoutes;
+Object.seal(ProjectRoutes);
+export = ProjectRoutes;

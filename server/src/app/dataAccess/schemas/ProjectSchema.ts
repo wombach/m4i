@@ -8,7 +8,7 @@ import IProjectModel = require("./../../model/interfaces/ProjectModel");
 var mongoose = DataAccess.mongooseInstance;
 var mongooseConnection = DataAccess.mongooseConnection;
 
-class HeroSchema {
+class ProjectSchema {
 
     static get schema () {
         var schema =  mongoose.Schema({
@@ -29,5 +29,5 @@ class HeroSchema {
         return schema;
     }
 }
-var schema = mongooseConnection.model<IProjectModel>("Heroes", HeroSchema.schema);
+var schema = mongooseConnection.model<IProjectModel>("Heroes", ProjectSchema.schema);
 export = schema;""

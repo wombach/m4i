@@ -7,7 +7,7 @@ import HeroBusiness = require("./../app/business/HeroBusiness");
 import IBaseController = require("./BaseController");
 import IProjectModel = require("./../app/model/interfaces/ProjectModel");
 
-class HeroController implements IBaseController <HeroBusiness> {
+class ProjectController implements IBaseController <HeroBusiness> {
 
     create(req: express.Request, res: express.Response): void {
         try {
@@ -89,4 +89,4 @@ class HeroController implements IBaseController <HeroBusiness> {
         }
     }
 }
-export = HeroController;
+export = ProjectController;

@@ -4,14 +4,14 @@
 
 import ProjectModel = require("./../model/ProjectModel");
 import IProjectModel = require("./../model/interfaces/ProjectModel");
-import HeroSchema = require("./../dataAccess/schemas/HeroSchema");
+import ProjectSchema = require("./../dataAccess/schemas/ProjectSchema");
 import RepositoryBase = require("./BaseRepository");
 
-class HeroRepository  extends RepositoryBase<IProjectModel> {
+class ProjectRepository  extends RepositoryBase<IProjectModel> {
     constructor () {
-        super(HeroSchema);
+        super(ProjectSchema);
     }
 }
 
-Object.seal(HeroRepository);
-export = HeroRepository;
+Object.seal(ProjectRepository);
+export = ProjectRepository;

@@ -2,44 +2,44 @@
  * Created by Moiz.Kachwala on 15-06-2016.
  */
 
-import HeroRepository = require("./../repository/HeroRepository");
+import ProjectRepository = require("./../repository/ProjectRepository");
 import IHeroBusiness = require("./interfaces/HeroBusiness");
 import IProjectModel = require("./../model/interfaces/ProjectModel");
 import ProjectModel = require("./../model/ProjectModel");
 
 
 class HeroBusiness implements IHeroBusiness {
-    private _heroRepository: HeroRepository;
+    private _projectRepository: ProjectRepository;
 
     constructor () {
-        this._heroRepository = new HeroRepository();
+        this._projectRepository = new ProjectRepository();
     }
 
     create (item: IProjectModel, callback: (error: any, result: any) => void) {
-        this._heroRepository.create(item, callback);
+        this._projectRepository.create(item, callback);
     }
 
     retrieve (callback: (error: any, result: any) => void) {
-        this._heroRepository.retrieve(callback);
+        this._projectRepository.retrieve(callback);
     }
 
     update (_id: string, item: IProjectModel, callback: (error: any, result: any) => void) {
 
-        this._heroRepository.findById(_id, (err, res) => {
+        this._projectRepository.findById(_id, (err, res) => {
             if(err) callback(err, res);
 
             else
-                this._heroRepository.update(res._id, item, callback);
+                this._projectRepository.update(res._id, item, callback);
 
         });
     }
 
     delete (_id: string, callback:(error: any, result: any) => void) {
-        this._heroRepository.delete(_id , callback);
+        this._projectRepository.delete(_id , callback);
     }
 
     findById (_id: string, callback: (error: any, result: IProjectModel) => void) {
-        this._heroRepository.findById(_id, callback);
+        this._projectRepository.findById(_id, callback);
     }
 
 }

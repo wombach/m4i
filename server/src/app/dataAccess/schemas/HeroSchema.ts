@@ -3,12 +3,12 @@
  */
 
 import DataAccess = require('../DataAccess');
-import IProjectModel = require('./../../model/interfaces/ProjectModel');
+import IHeroModel = require("./../../model/interfaces/HeroModel");
 
 var mongoose = DataAccess.mongooseInstance;
 var mongooseConnection = DataAccess.mongooseConnection;
 
-class ProjectSchema {
+class HeroSchema {
 
     static get schema () {
         var schema =  mongoose.Schema({
@@ -29,5 +29,5 @@ class ProjectSchema {
         return schema;
     }
 }
-var schema = mongooseConnection.model<IProjectModel>('management', ProjectSchema.schema);
+var schema = mongooseConnection.model<IHeroModel>("Heroes", HeroSchema.schema);
 export = schema;""

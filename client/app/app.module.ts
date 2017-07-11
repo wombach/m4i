@@ -6,11 +6,11 @@ import { HttpModule }     from '@angular/http';
 import { AppComponent }  from './app.component';
 import { routing }       from './app.routing';
 
-import { HeroesComponent }      from './components/heroes/heroes.component';
+import { ProjectsComponent }      from './components/projects/projects.component';
 import { DashboardComponent }   from './components/dashboard/dashboard.component';
-import { HeroDetailComponent }  from './components/heroDetail/hero-detail.component';
+import { ProjectDetailComponent }  from './components/projectDetail/project-detail.component';
 
-import { HeroService }  from './services/hero.service';
+import { ProjectService }  from './services/project.service';
 
 @NgModule({
   imports: [
@@ -21,12 +21,12 @@ import { HeroService }  from './services/hero.service';
     ],
   declarations: [
     AppComponent,
-    HeroesComponent,
+    ProjectsComponent,
     DashboardComponent,
-    HeroDetailComponent
+    ProjectDetailComponent
   ],
   providers: [
-    HeroService
+    ProjectService
   ],
   bootstrap: [AppComponent]
 })

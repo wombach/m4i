@@ -4,7 +4,7 @@
     <div class="col-md-12">
         <div class="error" *ngIf="error">{{error}}</div>
         <div class="pull-right">
-            <button class="btn btn-success" (click)="addHero()">Add New Hero</button>
+            <button class="btn btn-success" (click)="addProject()">Add New Hero</button>
         </div>
     </div>
 </div>
@@ -19,10 +19,10 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let hero of heroes" [class.active]="hero === selectedHero" (click)="onSelect(hero)">
-                    <td>{{hero._id}}</td>
-                    <td>{{hero.name}}</td>
-                    <td><button class="btn btn-danger" (click)="deleteHero(hero, $event)">Delete</button></td>
+                <tr *ngFor="let project of projects" [class.active]="project === selectedProject" (click)="onSelect(project)">
+                    <td>{{project._id}}</td>
+                    <td>{{project.name}}</td>
+                    <td><button class="btn btn-danger" (click)="deleteProject(project, $event)">Delete</button></td>
                 </tr>
             </tbody>
         </table>
@@ -30,9 +30,9 @@
 </div>
 <div class="row">
     <div class="col-md-12">
-        <div *ngIf="selectedHero">
+        <div *ngIf="selectedProject">
             <h2>
-                {{selectedHero.name | uppercase}} is my hero
+                {{selectedProject.name | uppercase}} is my hero
             </h2>
             <button class="btn btn-primary" (click)="gotoDetail()">View Details</button>
         </div>

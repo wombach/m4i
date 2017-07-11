@@ -6,16 +6,16 @@ import {Injectable} from '@angular/core';
 
 import { Headers, Http, Response } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import {Hero} from '../models/hero';
+import {Project} from "../models/project";
 
 @Injectable()
-export class HeroService {
+export class ProjectService {
 
     private heroesUrl = 'api/heroes';  // URL to web api
 
     constructor(private http: Http) { }
 
-    getHeroes(): Promise<Hero[]> {
+    getHeroes(): Promise<Project[]> {
         return this.http.get(this.heroesUrl)
             .toPromise()
             .then(response => response.json())
@@ -29,42 +29,42 @@ export class HeroService {
             .catch(this.handleError);
     }
 
-    save(hero: Hero): Promise<Hero>  {
-        if (hero._id) {
-            return this.put(hero);
+    save(project: Project): Promise<Project>  {
+        if (project._id) {
+            return this.put(project);
         }
-        return this.post(hero);
+        return this.post(project);
     }
 
-    private post(hero: Hero): Promise<Hero> {
+    private post(project: Project): Promise<Project> {
         let headers = new Headers({
             'Content-Type': 'application/json'});
 
         return this.http
-            .post(this.heroesUrl, JSON.stringify(hero), {headers: headers})
+            .post(this.heroesUrl, JSON.stringify(project), {headers:headers})
             .toPromise()
             .then(response => response.json().data)
             .catch(this.handleError);
     }
 
-    private put(hero: Hero) {
+    private put(project: Project) {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
-        let url = `${this.heroesUrl}/${hero._id}`;
+        let url = `${this.heroesUrl}/${project._id}`;
 
         return this.http
-            .put(url, JSON.stringify(hero), {headers: headers})
+            .put(url, JSON.stringify(project), {headers: headers})
             .toPromise()
-            .then(() => hero)
+            .then(() => project)
             .catch(this.handleError);
     }
 
-    delete(hero: Hero) {
+    delete(project: Project) {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
-        let url = `${this.heroesUrl}/${hero._id}`;
+        let url = `${this.heroesUrl}/${project._id}`;
 
         return this.http
             .delete(url, headers)

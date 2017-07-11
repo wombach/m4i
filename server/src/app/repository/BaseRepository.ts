@@ -2,11 +2,11 @@
  * Created by Moiz.Kachwala on 15-06-2016.
  */
 
-import IRead = require('./interfaces/Read');
-import IWrite = require('./interfaces/Write');
-import IProjectModel = require('./../model/interfaces/ProjectModel');
+import IRead = require("./interfaces/Read");
+import IWrite = require("./interfaces/Write");
+import IHeroModel = require("./../model/interfaces/HeroModel");
 
-import mongoose = require('mongoose');
+import mongoose = require("mongoose");
 
 class RepositoryBase<T extends mongoose.Document> implements IRead<T>, IWrite<T> {
 

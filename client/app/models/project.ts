@@ -2,7 +2,7 @@
  * Created by Moiz.Kachwala on 02-06-2016.
  */
 
-export class Hero {
+export class Project {
     _id: string;
     power: string;
     amountPeopleSaved: number;

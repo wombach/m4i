@@ -1,0 +1,17 @@
+/**
+ * Created by Moiz.Kachwala on 15-06-2016.
+ */
+
+import ProjectModel = require('./../model/ProjectModel');
+import IProjectModel = require('./../model/interfaces/ProjectModel');
+import ProjectSchema = require('./../dataAccess/schemas/HeroSchema');
+import RepositoryBase = require('./BaseRepository');
+
+class ProjectRepository  extends RepositoryBase<IProjectModel> {
+    constructor () {
+        super(ProjectSchema);
+    }
+}
+
+Object.seal(ProjectRepository);
+export = ProjectRepository;

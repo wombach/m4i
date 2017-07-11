@@ -3,14 +3,14 @@
  */
 
 import express = require('express');
-import HeroController = require('./../../controllers/HeroController');
+import ProjectController = require('./../../controllers/ProjectController');
 
 var router = express.Router();
-class HeroRoutes {
-    private _heroController: HeroController;
+class ProjectRoutes {
+    private _heroController: ProjectController;
 
     constructor () {
-        this._heroController = new HeroController();
+        this._heroController = new ProjectController();
     }
     get routes () {
         var controller = this._heroController;
@@ -27,5 +27,5 @@ class HeroRoutes {
 
 }
 
-Object.seal(HeroRoutes);
-export = HeroRoutes;
+Object.seal(ProjectRoutes);
+export = ProjectRoutes;

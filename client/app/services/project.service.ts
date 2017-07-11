@@ -11,19 +11,19 @@ import {Project} from "../models/project";
 @Injectable()
 export class ProjectService {
 
-    private heroesUrl = 'api/heroes';  // URL to web api
+    private projectsUrl = 'api/heroes';  // URL to web api
 
     constructor(private http: Http) { }
 
-    getHeroes(): Promise<Project[]> {
-        return this.http.get(this.heroesUrl)
+    getProjects(): Promise<Project[]> {
+        return this.http.get(this.projectsUrl)
             .toPromise()
             .then(response => response.json())
             .catch(this.handleError);
     }
 
-    getHero(id: string) {
-        return this.http.get(this.heroesUrl + '/' + id)
+    getProject(id: string) {
+        return this.http.get(this.projectsUrl + '/' + id)
             .toPromise()
             .then(response => response.json())
             .catch(this.handleError);
@@ -41,7 +41,7 @@ export class ProjectService {
             'Content-Type': 'application/json'});
 
         return this.http
-            .post(this.heroesUrl, JSON.stringify(project), {headers:headers})
+            .post(this.projectsUrl, JSON.stringify(project), {headers:headers})
             .toPromise()
             .then(response => response.json().data)
             .catch(this.handleError);
@@ -51,7 +51,7 @@ export class ProjectService {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
-        let url = `${this.heroesUrl}/${project._id}`;
+        let url = `${this.projectsUrl}/${project._id}`;
 
         return this.http
             .put(url, JSON.stringify(project), {headers: headers})
@@ -64,7 +64,7 @@ export class ProjectService {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
-        let url = `${this.heroesUrl}/${project._id}`;
+        let url = `${this.projectsUrl}/${project._id}`;
 
         return this.http
             .delete(url, headers)

@@ -21,7 +21,7 @@ export class ProjectsComponent implements OnInit {
         private router: Router,
         private projectService: ProjectService) { }
     getProjects() {
-        this.projectService.getHeroes().then(heroes => this.projects = heroes);
+        this.projectService.getProjects().then(projects => this.projects = projects);
     }
     ngOnInit() {
         this.getProjects();

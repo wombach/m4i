@@ -32,7 +32,7 @@ export class ProjectDetailComponent implements OnInit {
                 this.project = new Project();
             } else {
                 this.newProject = false;
-                this.projectService.getHero(id)
+                this.projectService.getProject(id)
                     .then(project => this.project = project);
             }
         });

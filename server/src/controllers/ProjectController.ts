@@ -3,18 +3,18 @@
  */
 
 import express = require("express");
-import HeroBusiness = require("./../app/business/HeroBusiness");
+import ProjectBusiness = require("./../app/business/ProjectBusiness");
 import IBaseController = require("./BaseController");
 import IProjectModel = require("./../app/model/interfaces/ProjectModel");
 
-class ProjectController implements IBaseController <HeroBusiness> {
+class ProjectController implements IBaseController <ProjectBusiness> {
 
     create(req: express.Request, res: express.Response): void {
         try {
 
             var project: IProjectModel = <IProjectModel>req.body;
-            var heroBusiness = new HeroBusiness();
-            heroBusiness.create(project, (error, result) => {
+            var projectBusiness = new ProjectBusiness();
+            projectBusiness.create(project, (error, result) => {
                 if(error) res.send({"error": "error"});
                 else res.send({"success": "success"});
             });
@@ -29,8 +29,8 @@ class ProjectController implements IBaseController <HeroBusiness> {
         try {
             var project: IProjectModel = <IProjectModel>req.body;
             var _id: string = req.params._id;
-            var heroBusiness = new HeroBusiness();
-            heroBusiness.update(_id, project, (error, result) => {
+            var projectBusiness = new ProjectBusiness();
+            projectBusiness.update(_id, project, (error, result) => {
                 if(error) res.send({"error": "error"});
                 else res.send({"success": "success"});
             });
@@ -45,8 +45,8 @@ class ProjectController implements IBaseController <HeroBusiness> {
         try {
 
             var _id: string = req.params._id;
-            var heroBusiness = new HeroBusiness();
-            heroBusiness.delete(_id, (error, result) => {
+            var projectBusiness = new ProjectBusiness();
+            projectBusiness.delete(_id, (error, result) => {
                 if(error) res.send({"error": "error"});
                 else res.send({"success": "success"});
             });
@@ -60,8 +60,8 @@ class ProjectController implements IBaseController <HeroBusiness> {
     retrieve(req: express.Request, res: express.Response): void {
         try {
 
-            var heroBusiness = new HeroBusiness();
-            heroBusiness.retrieve((error, result) => {
+            var projectBusiness = new ProjectBusiness();
+            projectBusiness.retrieve((error, result) => {
                 if(error) res.send({"error": "error"});
                 else res.send(result);
             });
@@ -76,8 +76,8 @@ class ProjectController implements IBaseController <HeroBusiness> {
         try {
 
             var _id: string = req.params._id;
-            var heroBusiness = new HeroBusiness();
-            heroBusiness.findById(_id, (error, result) => {
+            var projectBusiness = new ProjectBusiness();
+            projectBusiness.findById(_id, (error, result) => {
                 if(error) res.send({"error": "error"});
                 else res.send(result);
             });

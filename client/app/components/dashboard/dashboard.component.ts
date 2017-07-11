@@ -23,7 +23,7 @@ export class DashboardComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.projectService.getHeroes()
+        this.projectService.getProjects()
             .then(projects => this.projects = projects);
     }
 

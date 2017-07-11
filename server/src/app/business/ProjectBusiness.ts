@@ -3,12 +3,12 @@
  */
 
 import ProjectRepository = require("./../repository/ProjectRepository");
-import IHeroBusiness = require("./interfaces/HeroBusiness");
+import IProjectBusiness = require("./interfaces/ProjectBusiness");
 import IProjectModel = require("./../model/interfaces/ProjectModel");
 import ProjectModel = require("./../model/ProjectModel");
 
 
-class HeroBusiness implements IHeroBusiness {
+class ProjectBusiness implements IProjectBusiness {
     private _projectRepository: ProjectRepository;
 
     constructor () {
@@ -45,5 +45,5 @@ class HeroBusiness implements IHeroBusiness {
 }
 
 
-Object.seal(HeroBusiness);
-export = HeroBusiness;
+Object.seal(ProjectBusiness);
+export = ProjectBusiness;

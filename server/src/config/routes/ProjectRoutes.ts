@@ -15,11 +15,11 @@ class ProjectRoutes {
     get routes () {
         var controller = this._projectController;
 
-        router.get("/heroes", controller.retrieve);
-        router.post("/heroes", controller.create);
-        router.put("/heroes/:_id", controller.update);
-        router.get("/heroes/:_id", controller.findById);
-        router.delete("/heroes/:_id", controller.delete);
+        router.get("/projects", controller.retrieve);
+        router.post("/projects", controller.create);
+        router.put("/projects/:_id", controller.update);
+        router.get("/projects/:_id", controller.findById);
+        router.delete("/projects/:_id", controller.delete);
 
         return router;
     }

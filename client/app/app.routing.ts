@@ -19,7 +19,7 @@ const appRoutes: Routes = [
     component: ProjectDetailComponent
   },
   {
-    path: 'heroes',
+    path: 'projects',
     component: ProjectsComponent
   }
 ];

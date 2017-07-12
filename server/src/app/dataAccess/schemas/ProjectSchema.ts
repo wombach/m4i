@@ -12,6 +12,10 @@ class ProjectSchema {
 
     static get schema () {
         var schema =  mongoose.Schema({
+            type_ : {
+                type: String,
+                required: true
+            },
             name : {
                 type: String,
                 required: true
@@ -29,5 +33,5 @@ class ProjectSchema {
         return schema;
     }
 }
-var schema = mongooseConnection.model<IProjectModel>("Heroes", ProjectSchema.schema);
+var schema = mongooseConnection.model<IProjectModel>("management", ProjectSchema.schema);
 export = schema;""

@@ -8,7 +8,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import {ProjectService} from "../../services/project.service";
 
 @Component({
-    selector: 'my-hero-detail',
+    selector: 'my-project-detail',
     templateUrl: './app/components/projectDetail/project-detail.component.html'
 })
 

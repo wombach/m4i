@@ -13,6 +13,7 @@ class ProjectController implements IBaseController <ProjectBusiness> {
         try {
 
             var project: IProjectModel = <IProjectModel>req.body;
+            project.type_ = 'project';
             var projectBusiness = new ProjectBusiness();
             projectBusiness.create(project, (error, result) => {
                 if(error) res.send({"error": "error"});

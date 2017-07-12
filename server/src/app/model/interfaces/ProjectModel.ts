@@ -5,6 +5,7 @@
 import mongoose = require("mongoose");
 
 interface ProjectModel extends mongoose.Document {
+    type_: string;
     power: string;
     amountPeopleSaved: number;
     name: string;

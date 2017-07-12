@@ -11,10 +11,14 @@ class ProjectModel {
     constructor(projectModel: IProjectModel) {
         this._projectModel = projectModel;
     }
+    get type_ (): string {
+        return this._projectModel.type_;
+    }
+    
     get name (): string {
         return this._projectModel.name;
     }
-
+  
     get power (): string {
         return this._projectModel.power;
     }

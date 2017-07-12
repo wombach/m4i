@@ -1,10 +1,18 @@
 /**
  * Created by Moiz.Kachwala on 02-06-2016.
  */
+import {Right} from './Right';
 
 export class Project {
     _id: string;
-    power: string;
-    amountPeopleSaved: number;
+    id: string;
+    type_: string;
     name: string;
+    committer: string;
+    documentation: string;
+    start_date: number;
+    end_date: number;
+    derived_from: string;
+    normalized_name: string;
+    rights: Array<Right>;
 }

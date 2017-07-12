@@ -11,6 +11,10 @@ class ProjectRepository  extends RepositoryBase<IProjectModel> {
     constructor () {
         super(ProjectSchema);
     }
+  
+    retrieve (callback: (error: any, result: any) => void) {
+        super.retrieveQuery(callback, {type_: 'project'});
+    }
 }
 
 Object.seal(ProjectRepository);

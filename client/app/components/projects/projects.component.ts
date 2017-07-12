@@ -7,7 +7,7 @@ import {Project} from "../../models/project";
 import { Router } from '@angular/router';
 
 @Component({
-    selector: 'my-heroes',
+    selector: 'my-projects',
     templateUrl: './app/components/projects/projects.component.html'
 })
 

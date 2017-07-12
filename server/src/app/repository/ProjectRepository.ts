@@ -13,7 +13,7 @@ class ProjectRepository  extends RepositoryBase<IProjectModel> {
     }
   
     retrieve (callback: (error: any, result: any) => void) {
-        super.retrieveQuery(callback, {type_: 'project'});
+        super.retrieveQuery(callback, "{type_: 'project'}");
     }
 }
 

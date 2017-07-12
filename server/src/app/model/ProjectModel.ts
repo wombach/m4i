@@ -3,6 +3,7 @@
  */
 
 import IProjectModel = require('./interfaces/ProjectModel');
+import IRightModel = require('./interfaces/RightModel');
 
 class ProjectModel {
 
@@ -19,14 +20,33 @@ class ProjectModel {
         return this._projectModel.name;
     }
   
-    get power (): string {
-        return this._projectModel.power;
+    get id (): string {
+        return this._projectModel.id;
     }
 
-    get amountPeopleSaved (): number {
-        return this._projectModel.amountPeopleSaved;
+    get documentation (): string {
+        return this._projectModel.documentation;
     }
     
+    get start_date (): number {
+        return this._projectModel.start_date;
+    }
+    get end_date (): number {
+        return this._projectModel.end_date;
+    }
+    get derived_from (): string {
+        return this._projectModel.derived_from;
+    }
+    get normalized_name (): string {
+        return this._projectModel.normalized_name;
+    }
+    get last_updated (): number {
+        return this._projectModel.last_updated;
+    }
+    get rights (): [IRightModel] {
+        return this._projectModel.rights;
+    }
+  
 }
 Object.seal(ProjectModel);
 export =  ProjectModel;

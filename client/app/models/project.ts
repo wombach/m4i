@@ -14,5 +14,10 @@ export class Project {
     end_date: number;
     derived_from: string;
     normalized_name: string;
+    last_updated: number;
     rights: Array<Right>;
+  
+  getLastUpdated(){
+    return this.last_updated.toString();
+  }
 }

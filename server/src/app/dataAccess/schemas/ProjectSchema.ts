@@ -4,6 +4,9 @@
 
 import DataAccess = require('../DataAccess');
 import IProjectModel = require("./../../model/interfaces/ProjectModel");
+//import RightSchema from './RightSchema';
+//import { Long } from 'bson';
+import RightSchema = require("./RightSchema");
 
 var mongoose = DataAccess.mongooseInstance;
 var mongooseConnection = DataAccess.mongooseConnection;
@@ -16,22 +19,50 @@ class ProjectSchema {
                 type: String,
                 required: true
             },
-            name : {
+            id : {
                 type: String,
                 required: true
             },
-            power: {
+                        name : {
                 type: String,
                 required: true
             },
-            amountPeopleSaved: {
+            normalized_name : {
+                type: String,
+                required: true
+            },
+            committer : {
+                type: String,
+                required: true
+            },
+            documentation : {
+                type: String,
+                required: true
+            },
+            start_date : {
                 type: Number,
                 required: true
+            },
+            end_date : {
+                type: Number,
+                required: true
+            },
+            derived_from : {
+                type: String,
+                required: false
+            },
+            last_updated : {
+                type: Number,
+                required: true
+            },
+            rights: {
+                type: [RightSchema] ,
+                required: true, index: true
             }
         });
 
         return schema;
     }
 }
-var schema = mongooseConnection.model<IProjectModel>("management", ProjectSchema.schema);
-export = schema;""
+var schema = mongooseConnection.model<IProjectModel>("ProjectModel", ProjectSchema.schema);
+export = schema; ""

@@ -13,15 +13,17 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>Object Id</th>
-                    <th>Name</th>
+                    <th>Project Name</th>
+                    <th>Documentation</th>
+                    <th>Last updated</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let project of projects" [class.active]="project === selectedProject" (click)="onSelect(project)">
-                    <td>{{project._id}}</td>
                     <td>{{project.name}}</td>
+                    <td>{{project.documentation}}</td>
+                    <td>{{project.last_updated}}</td>
                     <td><button class="btn btn-danger" (click)="deleteProject(project, $event)">Delete</button></td>
                 </tr>
             </tbody>

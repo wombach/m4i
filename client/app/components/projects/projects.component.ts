@@ -33,6 +33,7 @@ export class ProjectsComponent implements OnInit {
     }
 
     addProject() {
+      console.log("pressed add project");
         this.selectedProject = null;
         this.router.navigate(['/detail', 'new']);
     }

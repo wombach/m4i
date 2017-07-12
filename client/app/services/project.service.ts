@@ -33,6 +33,7 @@ export class ProjectService {
         if (project._id) {
             return this.put(project);
         }
+      console.log("service save")
         return this.post(project);
     }
 

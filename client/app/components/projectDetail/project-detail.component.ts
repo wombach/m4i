@@ -39,6 +39,8 @@ export class ProjectDetailComponent implements OnInit {
     }
 
     save() {
+      console.log("pressed save");
+      console.log(this.project);
         this.projectService
             .save(this.project)
             .then(project => {

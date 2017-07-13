@@ -44,7 +44,8 @@
     "bootstrap": "^3.3.7",
     "express": "^4.15.2",
     "mongoose": "^4.8.6",
-    "reflect-metadata": "^0.1.10"
+    "reflect-metadata": "^0.1.10",
+    "uuid": "^3.1.0"
   },
   "devDependencies": {
     "@types/angular": "^1.5.16",

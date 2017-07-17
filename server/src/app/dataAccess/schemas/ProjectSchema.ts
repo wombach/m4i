@@ -37,7 +37,7 @@ class ProjectSchema {
             },
             documentation : {
                 type: String,
-                required: true
+                required: false
             },
             start_date : {
                 type: Number,

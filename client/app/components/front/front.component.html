@@ -1,0 +1,29 @@
+<div class="form-horizontal">
+    <h2>New Project</h2>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Project Name: </label>
+        <div class="col-sm-10">
+            <input class="form-control" [(ngModel)]="project.name" placeholder="name" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Documentation: </label>
+        <div class="col-sm-10">
+            <input class="form-control" [(ngModel)]="project.documentation" placeholder="documentation" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button (click)="save()" class="btn btn-primary">Create</button>
+        </div>
+    </div>
+</div>
+<h2>Your Projects</h2>
+<div class="row">
+    <div *ngFor="let project2 of projects" (click)="gotoDetail(project2)" class="col-md-3">
+        <div class="module project">
+            <h4>{{project2.name}}</h4>
+            <div>{{project2.documentation}}</div>
+        </div>
+    </div>
+</div>

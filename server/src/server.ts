@@ -53,4 +53,7 @@ app.use(function(err: any, req: express.Request, res: express.Response, next: ex
     });
 });
 
+// let npid = require("npid")
+// let pid = npid.create('/var/run/chubaka.pid');
+
 export { app }

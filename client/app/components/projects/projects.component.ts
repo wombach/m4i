@@ -48,4 +48,13 @@ export class ProjectsComponent implements OnInit {
             })
             .catch(error => this.error = error);
     }
+  getLastUpdated(project: Project){
+    // var f = require('date-fns/format');
+    var d = new Date(project.last_updated);
+    // return f.format(d, 'YYYY-MM-DDTHH:mm:ss.SSSZ');
+    //var dateFormat = require('dateformat');
+    // dateFormat(d, "dddd, mmmm dS, yyyy, h:MM:ss TT");
+    return d.getDate()  + "-" + (d.getMonth()+1) + "-" + d.getFullYear() + " " +
+           d.getHours() + ":" + d.getMinutes();
+  }
 }

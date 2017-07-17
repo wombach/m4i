@@ -37,8 +37,8 @@ class ProjectController implements IBaseController <ProjectBusiness> {
 //            var right = new RightModel(IRightModel);
 //            right.permission = 'read';
 //            right.users = [user];
-          console.log(right2);
-          console.log(project.rights);
+          // console.log(right2);
+          // console.log(project.rights);
           if ( !project.rights || project.rights.length === 0 ) {
               project.rights = [right2];
               // feature.params.push(

@@ -8,6 +8,7 @@ import { routing }       from './app.routing';
 
 import { ProjectsComponent }      from './components/projects/projects.component';
 import { DashboardComponent }   from './components/dashboard/dashboard.component';
+import { FrontComponent }   from './components/front/front.component';
 import { ProjectDetailComponent }  from './components/projectDetail/project-detail.component';
 
 import { ProjectService }  from './services/project.service';
@@ -23,6 +24,7 @@ import { ProjectService }  from './services/project.service';
     AppComponent,
     ProjectsComponent,
     DashboardComponent,
+    FrontComponent,
     ProjectDetailComponent
   ],
   providers: [

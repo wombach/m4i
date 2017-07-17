@@ -16,8 +16,4 @@ export class Project {
     normalized_name: string;
     last_updated: number;
     rights: Array<Right>;
-  
-  getLastUpdated(){
-    return this.last_updated.toString();
-  }
 }

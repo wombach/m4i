@@ -2,11 +2,11 @@
  * Created by Moiz.Kachwala on 15-06-2016.
  */
 
-import express = require("express");
-import ProjectBusiness = require("./../app/business/ProjectBusiness");
-import IBaseController = require("./BaseController");
-import IProjectModel = require("./../app/model/interfaces/ProjectModel");
-import IRightModel = require("./../app/model/interfaces/RightModel");
+import express = require('express');
+import ProjectBusiness = require('./../app/business/ProjectBusiness');
+import IBaseController = require('./BaseController');
+import IProjectModel = require('./../app/model/interfaces/ProjectModel');
+import IRightModel = require('./../app/model/interfaces/RightModel');
 //import RightModel = require("./../app/model/RightModel");
 const mongoose = require('mongoose');
 const uuidv1 = require('uuid/v1');
@@ -16,7 +16,7 @@ class ProjectController implements IBaseController <ProjectBusiness> {
     
             
     create(req: express.Request, res: express.Response): void {
-      console.log("message arrived");
+      console.log('message arrived');
         try {
             var user = 'Andreas';
             var time = Date.now();
@@ -32,6 +32,7 @@ class ProjectController implements IBaseController <ProjectBusiness> {
             project.start_date = time;
             project.end_date = -1;
             project.derived_from = null;
+            project.project_id = null;
             project.normalized_name = project.name.toLowerCase();
             project.last_updated = time;
 //            var right = new RightModel(IRightModel);
@@ -54,13 +55,34 @@ class ProjectController implements IBaseController <ProjectBusiness> {
             projectBusiness.create(project, (error, result) => {
                 if(error) {
                   console.log(error);
-                  res.send({"error": error});
-              }  else res.send({"success": "success"});
+                  res.send({'error': error});
+              }  else res.send({'success': 'success'});
+            console.log('still continue...');
+            var ProjectModel = mongoose.model('ProjectModel');
+            var project2 = new ProjectModel;
+            project2.type_ = 'branch';
+            project2.project_id = project.id;
+            project2.id = uuidv1();
+            project2.name = 'MASTER';
+            project2.normalized_name = 'master';
+            project2.committer = user;
+            project2.start_date = time;
+            project2.end_date = -1;
+            project2.derived_from = null;
+            project2.documentation = "Master branch of the project.";
+            project2.last_updated = time;
+            project2.rights = [right2];
+            projectBusiness.create(project2, (error, result) => {
+                if(error) {
+                  console.log(error);
+                  // res.send({'error': error});
+              }  else console.log("success"); // res.send({'success': 'success'});
+               });
             });
         }
         catch (e)  {
             console.log(e);
-            res.send({"error": "error in your request"});
+            res.send({'error': 'error in your request'});
 
         }
     }
@@ -70,13 +92,13 @@ class ProjectController implements IBaseController <ProjectBusiness> {
             var _id: string = req.params._id;
             var projectBusiness = new ProjectBusiness();
             projectBusiness.update(_id, project, (error, result) => {
-                if(error) res.send({"error": "error"});
-                else res.send({"success": "success"});
+                if(error) res.send({'error': 'error'});
+                else res.send({'success': 'success'});
             });
         }
         catch (e)  {
             console.log(e);
-            res.send({"error": "error in your request"});
+            res.send({'error': 'error in your request'});
 
         }
     }
@@ -86,13 +108,13 @@ class ProjectController implements IBaseController <ProjectBusiness> {
             var _id: string = req.params._id;
             var projectBusiness = new ProjectBusiness();
             projectBusiness.delete(_id, (error, result) => {
-                if(error) res.send({"error": "error"});
-                else res.send({"success": "success"});
+                if(error) res.send({'error': 'error'});
+                else res.send({'success': 'success'});
             });
         }
         catch (e)  {
             console.log(e);
-            res.send({"error": "error in your request"});
+            res.send({'error': 'error in your request'});
 
         }
     }
@@ -101,13 +123,13 @@ class ProjectController implements IBaseController <ProjectBusiness> {
 
             var projectBusiness = new ProjectBusiness();
             projectBusiness.retrieve((error, result) => {
-                if(error) res.send({"error": "error"});
+                if(error) res.send({'error': 'error'});
                 else res.send(result);
             });
         }
         catch (e)  {
             console.log(e);
-            res.send({"error": "error in your request"});
+            res.send({'error': 'error in your request'});
 
         }
     }
@@ -117,13 +139,13 @@ class ProjectController implements IBaseController <ProjectBusiness> {
             var _id: string = req.params._id;
             var projectBusiness = new ProjectBusiness();
             projectBusiness.findById(_id, (error, result) => {
-                if(error) res.send({"error": "error"});
+                if(error) res.send({'error': 'error'});
                 else res.send(result);
             });
         }
         catch (e)  {
             console.log(e);
-            res.send({"error": "error in your request"});
+            res.send({'error': 'error in your request'});
 
         }
     }

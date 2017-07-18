@@ -21,7 +21,7 @@
 <h2>Your Projects</h2>
 <div class="row">
     <div *ngFor="let project2 of projects" (click)="gotoDetail(project2)" class="col-md-3">
-        <div class="module project">
+        <div *ngIf="project2.normalized_name!='master'" class="module project">
             <h4>{{project2.name}}</h4>
             <div>{{project2.documentation}}</div>
         </div>

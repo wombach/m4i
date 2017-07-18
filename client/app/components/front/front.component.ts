@@ -37,13 +37,14 @@ export class FrontComponent implements OnInit {
             .save(this.project)
             .then(project => {
                 this.project = project; // saved hero, w/ id if new                
-                this.goBack();
+                this.goDashboard();
             })
             .catch(error => this.error = error); // TODO: Display error message
     }
   
-      goBack() {
-        window.history.back();
+      goDashboard() {
+        let link = ['/dashboard'];
+        this.router.navigate(link);
     }
   
     gotoDetail(project: Project) {

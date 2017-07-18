@@ -15,6 +15,7 @@ id: string;
     start_date: number;
     end_date: number;
     derived_from: string;
+    project_id: string;
     normalized_name: string;
     last_updated: number;
     rights: [RightModel];

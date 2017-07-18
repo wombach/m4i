@@ -51,6 +51,10 @@ class ProjectSchema {
                 type: String,
                 required: false
             },
+            project_id : {
+                type: String,
+                required: false
+            },
             last_updated : {
                 type: Number,
                 required: true

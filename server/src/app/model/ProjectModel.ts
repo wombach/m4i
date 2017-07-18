@@ -37,6 +37,9 @@ class ProjectModel {
     get derived_from (): string {
         return this._projectModel.derived_from;
     }
+    get project_id (): string {
+        return this._projectModel.project_id;
+    }
     get normalized_name (): string {
         return this._projectModel.normalized_name;
     }

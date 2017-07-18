@@ -30,6 +30,9 @@ class ProjectController implements IBaseController <ProjectBusiness> {
             project.id = uuidv1();
             project.committer = user;
             project.start_date = time;
+            if(project.subscription === 'private'){
+              project.expiration_date = time+365*24*60*60*1000; // add one year
+            }
             project.end_date = -1;
             project.derived_from = null;
             project.project_id = null;
@@ -70,6 +73,7 @@ class ProjectController implements IBaseController <ProjectBusiness> {
             project2.end_date = -1;
             project2.derived_from = null;
             project2.documentation = "Master branch of the project.";
+            project2.subscription = project.subscription;
             project2.last_updated = time;
             project2.rights = [right2];
             projectBusiness.create(project2, (error, result) => {

@@ -15,11 +15,11 @@ class ProjectModel {
     get type_ (): string {
         return this._projectModel.type_;
     }
-    
+
     get name (): string {
         return this._projectModel.name;
     }
-  
+
     get id (): string {
         return this._projectModel.id;
     }
@@ -27,7 +27,14 @@ class ProjectModel {
     get documentation (): string {
         return this._projectModel.documentation;
     }
-    
+
+    get subscription (): string {
+        return this._projectModel.subscription;
+    }
+
+    get expiration_date (): number {
+        return this._projectModel.expiration_date;
+    }
     get start_date (): number {
         return this._projectModel.start_date;
     }
@@ -49,7 +56,7 @@ class ProjectModel {
     get rights (): [IRightModel] {
         return this._projectModel.rights;
     }
-  
+
 }
 Object.seal(ProjectModel);
 export =  ProjectModel;

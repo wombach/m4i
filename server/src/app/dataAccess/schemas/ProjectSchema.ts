@@ -39,6 +39,14 @@ class ProjectSchema {
                 type: String,
                 required: false
             },
+            subscription : {
+                type: String,
+                required: true
+            },
+            expiration_date : {
+                type: Number,
+                required: false
+            },
             start_date : {
                 type: Number,
                 required: true

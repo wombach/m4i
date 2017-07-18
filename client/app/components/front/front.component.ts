@@ -26,6 +26,7 @@ export class FrontComponent implements OnInit {
     ngOnInit() {
         this.newProject = true;
         this.project = new Project();
+        this.project.subscription = 'public';
         this.projectService.getProjects()
             .then(projects => this.projects = projects);
     }

@@ -12,6 +12,8 @@ id: string;
     name: string;
     committer: string;
     documentation: string;
+    subscription: string;
+    expiration_date: number;
     start_date: number;
     end_date: number;
     derived_from: string;

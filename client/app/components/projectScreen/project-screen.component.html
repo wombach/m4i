@@ -36,4 +36,17 @@
       <option *ngFor="let b of branches" [ngValue]="b"> {{b.name}} </option>
     </select>
     </div>
+    <div class="form-group">
+    	    <div class="col-sm-offset-2 col-sm-10">
+            	<input class="form-control" [(ngModel)]="newBranchName" placeholder="new branch name" />
+            	<button (click)="cloneBranch()" class="btn btn-primary">Clone Branch</button>
+        	</div>
+    </div>
+    <div>
+    <input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".pdf,.doc,.docx">
+    </div>
+    <div>compare two versions of a model either from different branches or of the current branch and the uploaded file</div>
+    <div>
+    show 15 latest actions on that branch
+    </div>
 </div>

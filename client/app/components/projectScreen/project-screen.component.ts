@@ -7,10 +7,14 @@ import {Project} from "../../models/project";
 import {Model} from "../../models/model";
 import { ActivatedRoute, Params } from '@angular/router';
 import {ProjectService} from "../../services/project.service";
+import { RequestOptions } from '@angular/http';
 // import {SelectItem} from 'primeng/primeng';
+// import {FileDroppa} from 'file-droppa';
+
 
 @Component({
     selector: 'my-project-screen',
+//    directives: ['FileDroppa'],
     templateUrl: './app/components/projectScreen/project-screen.component.html',
     styleUrls: ['./app/components/projectScreen/project.screen.component.css']
 })
@@ -21,6 +25,7 @@ export class ProjectScreenComponent implements OnInit {
     branches: Project[];
     // branchesForm: SelectItem[] = [];
     selectedBranch: Project;
+    newBranchName: string;
   
     models: Model[];
     error: any;
@@ -71,6 +76,10 @@ export class ProjectScreenComponent implements OnInit {
       console.log("pressed change branch ");
       console.log(branch);
     }
+    cloneBranch() {
+      console.log("pressed clone branch ");
+      console.log(this.newBranchName);
+    }
   
     goBack() {
         window.history.back();
@@ -90,4 +99,15 @@ export class ProjectScreenComponent implements OnInit {
            ((d.getMonth()+1)<10?'0':'') + (d.getMonth()+1) + "-" + d.getFullYear() + " " +
            (d.getHours()<10?'0':'') + d.getHours() + ":" + (d.getMinutes()<10?'0':'') + d.getMinutes();
   }
+  
+  fileChange(event: any) {
+    let fileList: FileList = event.target.files;
+    if(fileList.length > 0) {
+        this.projectService.uploadFile(fileList);
+//            .then(res => {
+//                console.log(res);
+//            })
+//            .catch(error => this.error = error); // TODO: Display error message
+    }
+}
 }

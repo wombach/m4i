@@ -4,9 +4,10 @@
 
 import {Injectable} from '@angular/core';
 
-import { Headers, Http, Response } from '@angular/http';
+import { Headers, Http, Response, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import {Project} from "../models/project";
+// import { Observable } from 'rxjs';
 
 @Injectable()
 export class ProjectService {
@@ -14,6 +15,7 @@ export class ProjectService {
     private projectsUrl = 'api/projects';  // URL to web api
     private branchesUrl = 'api/branches';  // URL to web api
     private modelsUrl = 'api/projects';  // URL to web api
+    private apiEndPoint = 'test';
   
     constructor(private http: Http) { }
 
@@ -87,4 +89,26 @@ export class ProjectService {
         console.error('An error occurred', error);
         return Promise.reject(error.message || error);
     }
+  
+    uploadFile(fileList: FileList) {
+    if(fileList.length > 0) {
+        let file: File = fileList[0];
+        let formData:FormData = new FormData();
+        formData.append('uploadFile', file, file.name);
+        let headers = new Headers();
+        /** No need to include Content-Type in Angular 4 */
+        headers.append('Content-Type', 'multipart/form-data');
+        headers.append('Accept', 'application/json');
+        let options = new RequestOptions({ headers: headers });
+        this.http.post(`${this.apiEndPoint}`, formData, options)
+            .toPromise()
+            .catch(this.handleError);
+//            .map(res => res.json())
+//            .catch(error => Observable.throw(error))
+//            .subscribe(
+//                data => console.log('success'),
+//                error => console.log(error)
+//            )      
+    }
+  }
 }

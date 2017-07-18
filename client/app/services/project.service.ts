@@ -44,7 +44,7 @@ export class ProjectService {
         return this.http
             .post(this.projectsUrl, JSON.stringify(project), {headers:headers})
             .toPromise()
-            .then(response => response.json().data)
+            .then(response => response.json())
             .catch(this.handleError);
     }
 

@@ -36,16 +36,18 @@
     "@angular/tsc-wrapped": "~4.2.0",
     "@angular/upgrade": "~4.2.0",
     "angular-in-memory-web-api": "~0.3.2",
-    "core-js": "^2.4.1",
-    "rxjs": "5.0.1",
-    "systemjs": "0.19.39",
-    "zone.js": "^0.8.4",
+    "angular2-uuid": "^1.1.1",
     "body-parser": "1.17.2",
     "bootstrap": "^3.3.7",
+    "core-js": "^2.4.1",
     "express": "^4.15.2",
     "mongoose": "^4.8.6",
     "reflect-metadata": "^0.1.10",
-    "uuid": "^3.1.0"
+    "rxjs": "5.0.1",
+    "systemjs": "0.19.39",
+    "uuid": "^3.1.0",
+    "angular2-uuid": "^3",
+    "zone.js": "^0.8.4"
   },
   "devDependencies": {
     "@types/angular": "^1.5.16",

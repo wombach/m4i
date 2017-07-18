@@ -3,12 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent }   from './components/dashboard/dashboard.component';
 import { ProjectsComponent }      from './components/projects/projects.component';
 import { ProjectDetailComponent }  from './components/projectDetail/project-detail.component';
+import { ProjectScreenComponent }  from './components/projectScreen/project-screen.component';
 import { FrontComponent }      from './components/front/front.component';
 
 const appRoutes: Routes = [
   {
     path: '',
-    redirectTo: '/dashboard',
+    redirectTo: '/front',
     pathMatch: 'full'
   },
   {
@@ -18,6 +19,10 @@ const appRoutes: Routes = [
   {
     path: 'detail/:id',
     component: ProjectDetailComponent
+  },
+    {
+    path: 'screen/:id',
+    component: ProjectScreenComponent
   },
   {
     path: 'projects',

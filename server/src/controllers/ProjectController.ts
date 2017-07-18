@@ -27,6 +27,7 @@ class ProjectController implements IBaseController <ProjectBusiness> {
             right2.permission = 'read';
             var project: IProjectModel = <IProjectModel>req.body;
             project.type_ = 'project';
+            // if(length(project.id)===0 )
             project.id = uuidv1();
             project.committer = user;
             project.start_date = time;
@@ -59,7 +60,10 @@ class ProjectController implements IBaseController <ProjectBusiness> {
                 if(error) {
                   console.log(error);
                   res.send({'error': error});
-              }  else res.send({'success': 'success'});
+              }  else {
+                  console.log(result);
+                  res.send(result);
+              }
             console.log('still continue...');
             var ProjectModel = mongoose.model('ProjectModel');
             var project2 = new ProjectModel;

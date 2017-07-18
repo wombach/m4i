@@ -10,6 +10,7 @@ import { ProjectsComponent }      from './components/projects/projects.component
 import { DashboardComponent }   from './components/dashboard/dashboard.component';
 import { FrontComponent }   from './components/front/front.component';
 import { ProjectDetailComponent }  from './components/projectDetail/project-detail.component';
+import { ProjectScreenComponent }  from './components/projectScreen/project-screen.component';
 
 import { ProjectService }  from './services/project.service';
 
@@ -25,7 +26,8 @@ import { ProjectService }  from './services/project.service';
     ProjectsComponent,
     DashboardComponent,
     FrontComponent,
-    ProjectDetailComponent
+    ProjectDetailComponent,
+    ProjectScreenComponent
   ],
   providers: [
     ProjectService

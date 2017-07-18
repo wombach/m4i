@@ -63,7 +63,7 @@ export class FrontComponent implements OnInit {
     }
   
     gotoScreen(project: Project) {
-        let link = ['/screen', project._id];
+        let link = ['/screen', project.id];
         this.router.navigate(link);
     }
 }

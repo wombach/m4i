@@ -157,5 +157,21 @@ class ProjectController implements IBaseController <ProjectBusiness> {
 
         }
     }
+    findBranchesById(req: express.Request, res: express.Response): void {
+        try {
+            var id: string = req.params.id;
+            console.log("controller: "+id);
+            var projectBusiness = new ProjectBusiness();
+            projectBusiness.findBranchesById(id, (error, result) => {
+                if(error) res.send({'error': 'error'});
+                else res.send(result);
+            });
+        }
+        catch (e)  {
+            console.log(e);
+            res.send({'error': 'error in your request'});
+
+        }
+    }
 }
 export = ProjectController;

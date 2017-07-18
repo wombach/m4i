@@ -12,11 +12,21 @@ import {Project} from "../models/project";
 export class ProjectService {
 
     private projectsUrl = 'api/projects';  // URL to web api
-
+    private branchesUrl = 'api/branches';  // URL to web api
+    private modelsUrl = 'api/projects';  // URL to web api
+  
     constructor(private http: Http) { }
 
     getProjects(): Promise<Project[]> {
         return this.http.get(this.projectsUrl)
+            .toPromise()
+            .then(response => response.json())
+            .catch(this.handleError);
+    }
+    
+    getBranches(id: string): Promise<Project[]> {
+        let url = `${this.branchesUrl}/${id}`;
+        return this.http.get(url)
             .toPromise()
             .then(response => response.json())
             .catch(this.handleError);

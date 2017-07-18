@@ -29,8 +29,10 @@ class RepositoryBase<T extends mongoose.Document> implements IRead<T>, IWrite<T>
         this._model.find({}, callback)
     }
 
-    retrieveQuery (callback: (error: any, result: any) => void, query: String) {
-        this._model.find({type_: 'project'}, callback)
+    retrieveQuery (callback: (error: any, result: any) => void, query: any) {
+      console.log("base retrieve query");
+      console.log(query);
+      this._model.find(query, callback);
     }
   
     update (_id: mongoose.Types.ObjectId, item: T, callback: (error: any, result: any) => void) {

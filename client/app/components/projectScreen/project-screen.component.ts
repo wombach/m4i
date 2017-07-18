@@ -4,17 +4,25 @@
 
 import {Component, Input, OnInit} from '@angular/core';
 import {Project} from "../../models/project";
+import {Model} from "../../models/model";
 import { ActivatedRoute, Params } from '@angular/router';
 import {ProjectService} from "../../services/project.service";
+// import {SelectItem} from 'primeng/primeng';
 
 @Component({
     selector: 'my-project-screen',
-    templateUrl: './app/components/projectScreen/project-screen.component.html'
+    templateUrl: './app/components/projectScreen/project-screen.component.html',
+    styleUrls: ['./app/components/projectScreen/project.screen.component.css']
 })
 
 export class ProjectScreenComponent implements OnInit {
     @Input() project: Project;
-    newProject = false;
+    editDocumentation = false;
+    branches: Project[];
+    // branchesForm: SelectItem[] = [];
+    selectedBranch: Project;
+  
+    models: Model[];
     error: any;
     navigated = false; // true if navigated here
 
@@ -27,14 +35,24 @@ export class ProjectScreenComponent implements OnInit {
     ngOnInit() {
         this.route.params.forEach((params: Params) => {
             let id = params['id'];
-            if (id === 'new') {
-                this.newProject = true;
-                this.project = new Project();
-            } else {
-                this.newProject = false;
-                this.projectService.getProject(id)
-                    .then(project => this.project = project);
+            this.projectService.getBranches(id)
+                    .then(branches => {
+                    this.branches = branches;
+            if(this.branches){
+            for(var branch of this.branches){
+              if(branch.type_==='project'){
+                this.project = branch;
+              } else {
+               // this.branchesForm.push({label: branch.name, value: branch});
+                if(branch.name==='MASTER') this.selectedBranch = branch;
+              }
             }
+            var index = this.branches.indexOf(this.project, 0);
+            if (index > -1) {
+               this.branches.splice(index, 1);
+            }
+                      }
+              });
         });
     }
 
@@ -49,8 +67,27 @@ export class ProjectScreenComponent implements OnInit {
             })
             .catch(error => this.error = error); // TODO: Display error message
     }
-
+    changeBranch(branch: Project) {
+      console.log("pressed change branch ");
+      console.log(branch);
+    }
+  
     goBack() {
         window.history.back();
     }
+    getDocumentation(){
+      if(this.project && this.project.documentation) return this.project.documentation;
+      return "no description provided";
+    }
+  getName(){
+      if(this.project && this.project.name) return this.project.name;
+      return "still loading....";
+    }
+    getLastUpdated(){
+      if(!this.project || !this.project.last_updated) return "still retrieving...";
+    var d = new Date(this.project.last_updated);
+    return (d.getDate()<10?'0':'') + d.getDate()  + "-" + 
+           ((d.getMonth()+1)<10?'0':'') + (d.getMonth()+1) + "-" + d.getFullYear() + " " +
+           (d.getHours()<10?'0':'') + d.getHours() + ":" + (d.getMinutes()<10?'0':'') + d.getMinutes();
+  }
 }

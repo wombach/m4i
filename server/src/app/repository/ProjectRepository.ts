@@ -13,7 +13,13 @@ class ProjectRepository  extends RepositoryBase<IProjectModel> {
     }
   
     retrieve (callback: (error: any, result: any) => void) {
-        super.retrieveQuery(callback, "{type_: 'project'}");
+        super.retrieveQuery(callback, {'type_': "project"});
+    }
+    
+    findBranchesById (id: string, callback: (error: any, result: any) => void) {
+        console.log("query:  {end_date: -1, $or:[{id:'"+id+"'},{project_id:'"+id+"' }]}");
+      // var obj = JSON.parse("{'end_date': -1, $or:[{'id':'"+id+"'},{'project_id':'"+id+"' }]}");
+        super.retrieveQuery(callback, {'end_date': -1, $or:[{'id': id},{'project_id': id }]});
     }
 }
 

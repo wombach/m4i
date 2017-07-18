@@ -41,7 +41,12 @@ class ProjectBusiness implements IProjectBusiness {
     findById (_id: string, callback: (error: any, result: IProjectModel) => void) {
         this._projectRepository.findById(_id, callback);
     }
-
+    
+    findBranchesById (id: string, callback: (error: any, result: IProjectModel) => void) {
+        console.log("busines find branches");
+        this._projectRepository.findBranchesById(id, callback);
+    }
+  
 }
 
 

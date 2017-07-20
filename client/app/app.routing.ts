@@ -5,6 +5,8 @@ import { ProjectsComponent }      from './components/projects/projects.component
 import { ProjectDetailComponent }  from './components/projectDetail/project-detail.component';
 import { ProjectScreenComponent }  from './components/projectScreen/project-screen.component';
 import { FrontComponent }      from './components/front/front.component';
+import { WpPageComponent }      from './components/wpPage/wp_page.component';
+import { ExternalHtmlComponent }      from './components/externalHtml/external_html.component';
 
 const appRoutes: Routes = [
   {
@@ -27,6 +29,14 @@ const appRoutes: Routes = [
   {
     path: 'projects',
     component: ProjectsComponent
+  },
+  {
+    path: 'users',
+    component: WpPageComponent
+  },
+  {
+    path: 'login',
+    component: ExternalHtmlComponent
   },
   {
     path: 'front',

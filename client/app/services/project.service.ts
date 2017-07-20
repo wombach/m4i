@@ -7,18 +7,39 @@ import {Injectable} from '@angular/core';
 import { Headers, Http, Response, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import {Project} from "../models/project";
+import {WpUser} from "../models/wpUser";
 // import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Rx';
+import 'rxjs/add/operator/map';
+// var WPAPI = require( 'wpapi' );
+// import { WpApiPosts, WpApiPages, WpApiComments, WpApiTypes, WpApiMedia, WpApiUsers, WpApiTaxonomies, WpApiStatuses, WpApiTerms, WpApiCustom} from 'wp-api-angular';
 
+    
 @Injectable()
 export class ProjectService {
 
     private projectsUrl = 'api/projects';  // URL to web api
     private branchesUrl = 'api/branches';  // URL to web api
     private modelsUrl = 'api/projects';  // URL to web api
-    private apiEndPoint = 'test';
+    private apiEndPoint = 'http://192.168.2.10/wp-json/wp/v2/users';
+    //private wp = new WPAPI({ endpoint: 'http://192.168.2.10/wp-json' });
+    //private wpApiUsers: WpApiUsers;
+    //private res : any;
   
     constructor(private http: Http) { }
 
+    getWpUsers() : Observable<any> { //: Promise<any> {
+        return this.http.get(this.apiEndPoint)
+            //.toPromise()
+          .flatMap((data) => data.json())
+          //.map((res:Response) => res.json() as WpUser[])
+                         //...errors if any
+          .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+//         .map((response: Response) => console.log(response.json()));
+//            .then((response: any) => response.json())
+//            .catch(this.handleError);
+    }
+  
     getProjects(): Promise<Project[]> {
         return this.http.get(this.projectsUrl)
             .toPromise()

@@ -15,8 +15,8 @@ class ProjectRoutes {
     get routes () {
         var controller = this._projectController;
 
-        router.get("/projects", controller.retrieve);
-        router.get("/branches/:id", controller.findBranchesById);
+        router.get("/projects/:_user", controller.retrieve);
+        router.get("/branches/:_id", controller.findBranchesById);
         router.post("/projects", controller.create);
         router.put("/projects/:_id", controller.update);
         router.get("/projects/:_id", controller.findById);

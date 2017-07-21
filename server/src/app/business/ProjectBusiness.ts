@@ -19,8 +19,8 @@ class ProjectBusiness implements IProjectBusiness {
         this._projectRepository.create(item, callback);
     }
 
-    retrieve (callback: (error: any, result: any) => void) {
-        this._projectRepository.retrieve(callback);
+    retrieve (_user: string, callback: (error: any, result: any) => void) {
+        this._projectRepository.retrieve(_user, callback);
     }
 
     update (_id: string, item: IProjectModel, callback: (error: any, result: any) => void) {

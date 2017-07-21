@@ -129,9 +129,9 @@ class ProjectController implements IBaseController <ProjectBusiness> {
     }
     retrieve(req: express.Request, res: express.Response): void {
         try {
-
+            var _user: string = req.params._user;
             var projectBusiness = new ProjectBusiness();
-            projectBusiness.retrieve((error, result) => {
+            projectBusiness.retrieve(_user, (error, result) => {
                 if(error) res.send({'error': 'error'});
                 else res.send(result);
             });
@@ -160,7 +160,7 @@ class ProjectController implements IBaseController <ProjectBusiness> {
     }
     findBranchesById(req: express.Request, res: express.Response): void {
         try {
-            var id: string = req.params.id;
+            var id: string = req.params._id;
             console.log("controller: "+id);
             var projectBusiness = new ProjectBusiness();
             projectBusiness.findBranchesById(id, (error, result) => {

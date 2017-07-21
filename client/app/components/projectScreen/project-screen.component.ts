@@ -102,6 +102,10 @@ export class ProjectScreenComponent implements OnInit {
       if(this.project && this.project.name) return this.project.name;
       return "still loading....";
     }
+  getCommitter(){
+      if(this.project && this.project.committer) return this.project.committer;
+      return "still loading....";
+    }
     getLastUpdated(){
       if(!this.project || !this.project.last_updated) return "still retrieving...";
     var d = new Date(this.project.last_updated);

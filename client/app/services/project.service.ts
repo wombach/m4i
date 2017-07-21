@@ -43,8 +43,16 @@ export class ProjectService {
 //            .catch(this.handleError);
     }
   
-    getProjects(): Promise<Project[]> {
-        return this.http.get(this.projectsUrl)
+//    getProjects(): Promise<Project[]> {
+//        return this.http.get(this.projectsUrl)
+//            .toPromise()
+//            .then(response => response.json())
+//            .catch(this.handleError);
+//    }
+    
+    getProjects(committer: string): Promise<Project[]> {
+        let url = `${this.projectsUrl}/${committer}`;
+        return this.http.get(url)
             .toPromise()
             .then(response => response.json())
             .catch(this.handleError);

@@ -53,7 +53,8 @@ export class FrontComponent implements OnInit {
         this.newProject = true;
         this.project = new Project();
         this.project.subscription = 'public';
-        this.projectService.getProjects()
+        this.project.committer = 'test user';
+        this.projectService.getProjects(this.project.committer)
             .then(projects => this.projects = projects);
     }
 
@@ -83,6 +84,8 @@ export class FrontComponent implements OnInit {
       console.log(this.project);
       console.log(top.document.getElementById("userid").getAttribute("value"));
       this.project.committer = top.document.getElementById("userid").getAttribute("value");
+      this.projectService.getProjects(this.project.committer)
+            .then(projects => this.projects = projects);
     }
   
 //    goDashboard() {

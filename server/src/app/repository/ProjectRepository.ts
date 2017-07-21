@@ -12,8 +12,8 @@ class ProjectRepository  extends RepositoryBase<IProjectModel> {
         super(ProjectSchema);
     }
   
-    retrieve (callback: (error: any, result: any) => void) {
-        super.retrieveQuery(callback, {'type_': "project"});
+    retrieve (_user: string, callback: (error: any, result: any) => void) {
+        super.retrieveQuery(callback, {'committer':_user, 'type_': "project"});
     }
     
     findBranchesById (id: string, callback: (error: any, result: any) => void) {

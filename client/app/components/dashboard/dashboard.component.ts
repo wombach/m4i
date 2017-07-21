@@ -23,7 +23,8 @@ export class DashboardComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.projectService.getProjects()
+        let _user = 'test user';
+        this.projectService.getProjects(_user)
             .then(projects => this.projects = projects);
     }
 

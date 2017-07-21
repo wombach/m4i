@@ -4,10 +4,12 @@
 
 import {Component, Input, OnInit} from '@angular/core';
 import {Project} from "../../models/project";
-import {Model} from "../../models/model";
+// import {Model} from "../../models/model";
 import { ActivatedRoute, Params } from '@angular/router';
 import {ProjectService} from "../../services/project.service";
 import { RequestOptions } from '@angular/http';
+//import { Cookie } from 'ng2-cookies';
+
 // import {SelectItem} from 'primeng/primeng';
 // import {FileDroppa} from 'file-droppa';
 
@@ -26,8 +28,9 @@ export class ProjectScreenComponent implements OnInit {
     // branchesForm: SelectItem[] = [];
     selectedBranch: Project;
     newBranchName: string;
+    user: string;
   
-    models: Model[];
+   // models: Model[];
     error: any;
     navigated = false; // true if navigated here
 
@@ -35,9 +38,16 @@ export class ProjectScreenComponent implements OnInit {
     constructor(
         private projectService: ProjectService,
         private route: ActivatedRoute) {
+      // just for testing!
     }
 
+  
     ngOnInit() {
+//        this.projectService.addCookie('wordpress_logged_in_6ebf9f7ef5b8a2a1a06c62cc50693637',
+//'Andreas+Wombacher|1499936566|6PS6n0a3lboEJpCJ3ZXIBcpJLJxOJRX2Isel8Uizq6g|' +
+//'7fd7d94a03aa6ddaca389fa0f7dbf90f976a8730936ebaf07efa83b8d258254a');
+//      
+//        this.projectService.extractUserFromWpCookies();
         this.route.params.forEach((params: Params) => {
             let id = params['id'];
             this.projectService.getBranches(id)
@@ -60,7 +70,7 @@ export class ProjectScreenComponent implements OnInit {
               });
         });
     }
-
+    
     save() {
       console.log("pressed save");
       console.log(this.project);

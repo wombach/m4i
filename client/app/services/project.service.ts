@@ -13,6 +13,7 @@ import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 // var WPAPI = require( 'wpapi' );
 // import { WpApiPosts, WpApiPages, WpApiComments, WpApiTypes, WpApiMedia, WpApiUsers, WpApiTaxonomies, WpApiStatuses, WpApiTerms, WpApiCustom} from 'wp-api-angular';
+// import { CookieService } from 'ng2-cookies';
 
     
 @Injectable()
@@ -26,7 +27,9 @@ export class ProjectService {
     //private wpApiUsers: WpApiUsers;
     //private res : any;
   
-    constructor(private http: Http) { }
+    constructor(private http: Http
+//              ,  public cookieService: CookieService 
+            ) { }
 
     getWpUsers() : Observable<any> { //: Promise<any> {
         return this.http.get(this.apiEndPoint)
@@ -132,4 +135,27 @@ export class ProjectService {
 //            )      
     }
   }
+  
+//  addCookie(cName: string, cValue: string) {
+//    console.log('Adding: ', cName, cValue);
+//    this.cookieService.set(cName, cValue);
+//  //  this.update();
+//  }
+//  extractUserFromWpCookies() {
+//    let cookies = this.cookieService.getAll();
+//    let keys = Object.keys(cookies);
+//    // console.log('test')
+//    for (let key of keys) {
+//      if (key.search(/wordpress_/gi) !== -1) {
+//        const arr = cookies[key].split('|');
+//        // console.log(arr);
+//        let user = arr[0];
+//        console.log(user);
+//        return user;
+//      }
+//    }
+//    return null;
+//  }
+  
+  
 }

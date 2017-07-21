@@ -1,0 +1,38 @@
+<html>
+<head>
+<title>Models4Insight</title>
+<head>
+<body>
+<script>
+var userid = "";
+function listCookies() {
+    var theCookies = document.cookie.split(';');
+    var aString = '';
+    for (var i = 1 ; i <= theCookies.length; i++) {
+        aString += i + ' ' + decodeURIComponent(theCookies[i-1]) + "\n";
+    }
+    return aString;
+}
+function switchVisibility(){
+	// alert(listCookies());
+	var state = document.getElementById("wp").style.visibility;
+        if (state=='hidden') {
+		document.getElementById("wp").style.visibility = 'visible';
+		document.getElementById("wp").height = 2000;
+		document.getElementById("ng2").style.visibility = 'hidden';
+		document.getElementById("ng2").height = 0;
+	} else {
+		document.getElementById("wp").style.visibility = 'hidden';
+		document.getElementById("wp").height=0;
+                document.getElementById("ng2").style.visibility = 'visible';
+		document.getElementById("ng2").height = 2000;
+		// document.getElementById("ng2").src = "/proj/#/front";
+		top.document.getElementById("userid").value = top.document.getElementById("wp").contentDocument.getElementsByClassName("display-name")[0].innerHTML;
+		top.document.getElementById("ng2").contentDocument.getElementById("trigger").click();
+	}
+}
+</script>
+<form><input id="userid" type="hidden" name="userid" value="Andreas" /></form>
+<iframe id="wp" style="visibility: visible;" name="banner" width="100%" marginwidth="0" height="2000" marginheight="0" align="top" scrolling="No" hspace="0" vspace="0" src="/" frameBorder="0" ></iframe>
+<iframe id="ng2" style="visibility: hidden;" name="banner" width="100%" marginwidth="0" height="0" marginheight="0" align="top" scrolling="No" hspace="0" vspace="0" src="/proj/" frameborder="0" ></iframe> 
+</body>

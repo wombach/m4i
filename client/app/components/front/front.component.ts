@@ -81,8 +81,8 @@ export class FrontComponent implements OnInit {
       // let id = UUID.UUID(); //uuidv1();
       // this.project.id = id; 
       console.log(this.project);
-      console.log(top.document.getElementById("userid").nodeValue);
-      this.project.committer = top.document.getElementById("userid").nodeValue;
+      console.log(top.document.getElementById("userid").getAttribute("value"));
+      this.project.committer = top.document.getElementById("userid").getAttribute("value");
     }
   
 //    goDashboard() {

@@ -75,7 +75,7 @@ export class FrontComponent implements OnInit {
             .catch(error => this.error = error); // TODO: Display error message
     }
   
-  trigger() {
+  updateCommitter() {
       console.log("pressed trigger ");
     // const uuidv1 = require('uuid/v1');
       // let id = UUID.UUID(); //uuidv1();

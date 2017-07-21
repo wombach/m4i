@@ -50,6 +50,11 @@ class ProjectModel {
     get normalized_name (): string {
         return this._projectModel.normalized_name;
     }
+    
+    get committer (): string {
+        return this._projectModel.committer;
+    }
+  
     get last_updated (): number {
         return this._projectModel.last_updated;
     }

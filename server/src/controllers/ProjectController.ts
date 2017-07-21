@@ -18,18 +18,19 @@ class ProjectController implements IBaseController <ProjectBusiness> {
     create(req: express.Request, res: express.Response): void {
       console.log('message arrived');
         try {
-            var user = 'Andreas';
+            var project: IProjectModel = <IProjectModel>req.body;
+            
+            var user = project.committer;
             var time = Date.now();
             var RightModel = mongoose.model('RightModel');
             var right2 = new RightModel;
            
             right2.users = [user];
             right2.permission = 'read';
-            var project: IProjectModel = <IProjectModel>req.body;
             project.type_ = 'project';
             // if(length(project.id)===0 )
             project.id = uuidv1();
-            project.committer = user;
+            // project.committer = user;
             project.start_date = time;
             if(project.subscription === 'private'){
               project.expiration_date = time+365*24*60*60*1000; // add one year

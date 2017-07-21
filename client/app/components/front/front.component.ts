@@ -27,27 +27,27 @@ export class FrontComponent implements OnInit {
     constructor(
         private router: Router,
         private projectService: ProjectService) {
-                  Cookie.set('wordpress_logged_in_6ebf9f7ef5b8a2a1a06c62cc50693637',
-'Andreas+Wombacher|1499936566|6PS6n0a3lboEJpCJ3ZXIBcpJLJxOJRX2Isel8Uizq6g|' +
-'7fd7d94a03aa6ddaca389fa0f7dbf90f976a8730936ebaf07efa83b8d258254a');
-      this.update();
+//                  Cookie.set('wordpress_logged_in_6ebf9f7ef5b8a2a1a06c62cc50693637',
+// 'Andreas+Wombacher|1499936566|6PS6n0a3lboEJpCJ3ZXIBcpJLJxOJRX2Isel8Uizq6g|' +
+// '7fd7d94a03aa6ddaca389fa0f7dbf90f976a8730936ebaf07efa83b8d258254a');
+//      this.update();
     }
 
-  update() {
-    let cookies = Cookie.getAll();
-    let keys = Object.keys(cookies);
-    for (let key of keys) {
-      if (key.search(/wordpress_/gi) !== -1) {
-        // console.log('found it')
-        // console.log(this.cookies[key]);
-        const arr = cookies[key].split('|');
-        // console.log(arr);
-        this.user = arr[0];
-        this.user = this.user.replace('+',' ');
-        console.log(this.user);
-      }
-    }
-  }
+//  update() {
+//    let cookies = Cookie.getAll();
+//    let keys = Object.keys(cookies);
+//    for (let key of keys) {
+//      if (key.search(/wordpress_/gi) !== -1) {
+//        // console.log('found it')
+//        // console.log(this.cookies[key]);
+//        const arr = cookies[key].split('|');
+//        // console.log(arr);
+//        this.user = arr[0];
+//        this.user = this.user.replace('+',' ');
+//        console.log(this.user);
+//      }
+//    }
+//  }
   
     ngOnInit() {
         this.newProject = true;
@@ -73,6 +73,16 @@ export class FrontComponent implements OnInit {
               console.log("reached then3");
             })
             .catch(error => this.error = error); // TODO: Display error message
+    }
+  
+  trigger() {
+      console.log("pressed trigger ");
+    // const uuidv1 = require('uuid/v1');
+      // let id = UUID.UUID(); //uuidv1();
+      // this.project.id = id; 
+      console.log(this.project);
+      console.log(top.document.getElementById("userid").value);
+      this.project.committer = top.document.getElementById("userid").value;
     }
   
 //    goDashboard() {

@@ -1,5 +1,8 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+//import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+//import { trigger, state, style, transition, animate } from '@angular/animations';
+
 import { FormsModule }    from '@angular/forms';
 import { HttpModule, Http }     from '@angular/http';
 
@@ -13,8 +16,11 @@ import { ExternalHtmlComponent }   from './components/externalHtml/external_html
 import { FrontComponent }   from './components/front/front.component';
 import { ProjectDetailComponent }  from './components/projectDetail/project-detail.component';
 import { ProjectScreenComponent }  from './components/projectScreen/project-screen.component';
+//import {TabViewModule} from 'primeng/primeng';
+
 
 import { ProjectService }  from './services/project.service';
+import { ModelService }  from './services/model.service';
 // import { WpApiModule, WpApiLoader, WpApiStaticLoader} from 'wp-api-angular';
 
 // export function WpApiLoaderFactory(http: Http) {
@@ -24,10 +30,12 @@ import { ProjectService }  from './services/project.service';
 @NgModule({
   imports: [
     BrowserModule,
+ //   BrowserAnimationsModule,
     HttpModule,
     FormsModule,
     routing,
 //    WpApiModule.forRoot({ provide: WpApiLoader, useFactory: (WpApiLoaderFactory), deps: [Http] }),
+   // TabViewModule,
     ],
   declarations: [
     AppComponent,
@@ -40,7 +48,8 @@ import { ProjectService }  from './services/project.service';
     ExternalHtmlComponent,
   ],
   providers: [
-    ProjectService
+    ProjectService,
+    ModelService,
   ],
   bootstrap: [AppComponent]
 })

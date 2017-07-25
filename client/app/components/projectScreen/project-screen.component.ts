@@ -4,10 +4,15 @@
 
 import {Component, Input, OnInit} from '@angular/core';
 import {Project} from "../../models/project";
+// import {Screen} from "../../models/screen";
 // import {Model} from "../../models/model";
+import {ModelBackend} from "../../models/modelBackend";
+
 import { ActivatedRoute, Params } from '@angular/router';
 import {ProjectService} from "../../services/project.service";
+import {ModelService} from "../../services/model.service";
 import { RequestOptions } from '@angular/http';
+//import { Message } from '_debugger';
 //import { Cookie } from 'ng2-cookies';
 
 // import {SelectItem} from 'primeng/primeng';
@@ -18,30 +23,35 @@ import { RequestOptions } from '@angular/http';
     selector: 'my-project-screen',
 //    directives: ['FileDroppa'],
     templateUrl: './app/components/projectScreen/project-screen.component.html',
-    styleUrls: ['./app/components/projectScreen/project.screen.component.css']
-})
+    styleUrls: ['./app/components/projectScreen/project-screen.component.css',]
+  })
 
 export class ProjectScreenComponent implements OnInit {
-    @Input() project: Project;
+    @Input() screen: Screen; 
+    project: Project;
     editDocumentation = false;
     branches: Project[];
     // branchesForm: SelectItem[] = [];
     selectedBranch: Project;
     newBranchName: string;
     user: string;
-  
+    selectedModel: ModelBackend;
+    runningModels: ModelBackend[] = [];
+    
    // models: Model[];
     error: any;
     navigated = false; // true if navigated here
 
-
     constructor(
         private projectService: ProjectService,
+        private modelService: ModelService,
         private route: ActivatedRoute) {
-      // just for testing!
+        this.selectedModel = new ModelBackend();
+        this.selectedModel.contentType = 'text/xml';
+        this.selectedModel.parserName = 'archimate3';
     }
 
-  
+
     ngOnInit() {
 //        this.projectService.addCookie('wordpress_logged_in_6ebf9f7ef5b8a2a1a06c62cc50693637',
 //'Andreas+Wombacher|1499936566|6PS6n0a3lboEJpCJ3ZXIBcpJLJxOJRX2Isel8Uizq6g|' +
@@ -82,6 +92,22 @@ export class ProjectScreenComponent implements OnInit {
             })
             .catch(error => this.error = error); // TODO: Display error message
     }
+  
+    saveModel() {
+      console.log("pressed saveModel");
+      this.selectedModel.projectName = this.project.normalized_name;
+      this.selectedModel.userid = this.project.committer;
+      this.selectedModel.branchName = this.selectedBranch.name;
+      console.log(this.selectedModel);
+      this.modelService
+          .getModel(this.selectedModel)
+          .then(model => {
+                this.selectedModel = model; // saved hero, w/ id if new
+                this.goBack();
+            })
+            .catch(error => this.error = error); // TODO: Display error message
+    }
+    
     changeBranch(branch: Project) {
       console.log("pressed change branch ");
       console.log(branch);
@@ -115,13 +141,15 @@ export class ProjectScreenComponent implements OnInit {
   }
   
   fileChange(event: any) {
-    let fileList: FileList = event.target.files;
-    if(fileList.length > 0) {
-        this.projectService.uploadFile(fileList);
+    this.selectedModel.file_list = event.target.files;
+//    if(fileList.length > 0) {
+//      console.log(fileList);
+//      this.selectedModel.file_list = event.srcElement.files;
+ //       this.projectService.uploadFile(fileList);
 //            .then(res => {
 //                console.log(res);
 //            })
 //            .catch(error => this.error = error); // TODO: Display error message
-    }
+    //}
 }
 }

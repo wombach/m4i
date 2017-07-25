@@ -1,52 +1,114 @@
 <div class="form-horizontal">
-    <h2>{{getCommitter()}} / {{getName()}}</h2>
-    <div class="form-group">
-    	<div *ngIf="editDocumentation">
-        	<div class="col-sm-10">
-            	<input class="form-control" [(ngModel)]="project.documentation" placeholder="documentation" />
-        	</div>
-        </div>        	
-    </div>
-    <div class="form-group">
-    	<div *ngIf="editDocumentation">
-    	    <div class="col-sm-offset-2 col-sm-10">
-        	    <button (click)="editDocumentation=false" class="btn btn-default">Cancel</button>
-            	<button (click)="save()" class="btn btn-primary">Save</button>
-        	</div>
-        </div>
-    </div>
-    	<div *ngIf="!editDocumentation">
-        	<div class="col-sm-10">{{getDocumentation()}}
-        	</div>
-        </div>        	
-    <div class="form-group">
-    	<div *ngIf="!editDocumentation">
-    	    <div class="col-sm-offset-2 col-sm-10">
-        	    <button (click)="editDocumentation=true" class="btn btn-default">Edit</button>
-        	</div>
-        </div>
-    </div>
-    <div>
-        <label class="col-sm-2 control-label">Latest update: </label>
-        <div class="col-sm-10">{{getLastUpdated()}}
-        </div>
-    </div>
-    <div>
-    <select [(ngModel)]="selectedBranch" (ngModelChange)="onChange($event)" >
-      <option *ngFor="let b of branches" [ngValue]="b"> {{b.name}} </option>
-    </select>
-    </div>
-    <div class="form-group">
-    	    <div class="col-sm-offset-2 col-sm-10">
-            	<input class="form-control" [(ngModel)]="newBranchName" placeholder="new branch name" />
-            	<button (click)="cloneBranch()" class="btn btn-primary">Clone Branch</button>
-        	</div>
-    </div>
-    <div>
-    <input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".pdf,.doc,.docx">
-    </div>
-    <div>compare two versions of a model either from different branches or of the current branch and the uploaded file</div>
-    <div>
-    show 15 latest actions on that branch
-    </div>
+	<h2>{{getCommitter()}} / {{getName()}}</h2>
+	<div *ngIf="editDocumentation">
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Documentation: </label>
+			<div class="col-sm-10 ">
+				<input class="form-control" [(ngModel)]="project.documentation"
+					placeholder="documentation" />
+			</div>
+		</div>
+		<div *ngIf="editDocumentation">
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button (click)="editDocumentation=false" class="btn btn-default">Cancel</button>
+					<button (click)="save()" class="btn btn-primary">Save</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div *ngIf="!editDocumentation">
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Documentation: </label>
+			<div id="control-text-description"
+				class="col-sm-10 control-text-description">{{getDocumentation()}}</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<button (click)="editDocumentation=true" class="btn btn-default">Edit</button>
+			</div>
+		</div>
+	</div>
+	<div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Updated: </label>
+			<div class="col-sm-10 control-text-description">{{getLastUpdated()}}</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Branches: </label>
+		<div class="col-sm-10">
+			<select class="col-sm-10" [(ngModel)]="selectedBranch"
+				(ngModelChange)="onChange($event)">
+				<option *ngFor="let b of branches" [ngValue]="b">{{b.name}}</option>
+			</select>
+		</div>
+	</div>
+	<div class="input-area">
+		<h3>Handling of Branches</h3>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<input class="form-control" [(ngModel)]="newBranchName"
+					placeholder="new branch name" />
+				<button (click)="cloneBranch()" class="btn btn-primary">Clone
+					Branch</button>
+			</div>
+		</div>
+	</div>
+	<div style="height: 10px;"></div>
+	<div class="input-area">
+		<h3>Committing a new Model</h3>
+		<div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Model File</label>
+				<div class="col-sm-offset-2 col-sm-10">
+					<input class="form-control" type="file"
+						(change)="fileChange($event)" placeholder="Upload file"
+						accept=".xml,.json">
+				</div>
+			</div>
+			<div class="form-group"></div>
+			<label class="col-sm-2 control-label">Model Type: </label>
+			<div class="col-sm-10">
+				<select class="col-sm-10" [(ngModel)]="selectedModel.parserName"
+					(ngModelChange)="onChange($event)">
+					<option vakue="archimate3">archimate3</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Comment:</label>
+				<div class="col-sm-10 ">
+					<input class="form-control" [(ngModel)]="selectedModel.comment"
+						placeholder="commit message" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">content type: </label>
+				<div class="col-sm-5">
+					<input class="form-control" style="width: 30px;" type="radio"
+						[(ngModel)]="selectedModel.contentType" name="contentType"
+						value="text/xml">text/xml
+				</div>
+				<div class="col-sm-5">
+					<input class="form-control" style="width: 30px;" type="radio"
+						[(ngModel)]="selectedModel.contentType" name="contentType"
+						value="application/json">application/json
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button (click)="saveModel()" class="btn btn-primary">Commit</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div style="height: 10px;"></div>
+	<div class="input-area">
+		<div>compare two versions of a model either from different
+			branches or of the current branch and the uploaded file</div>
+	</div>
+	<div style="height: 10px;"></div>
+	<div class="input-area">
+		<div>show 15 latest actions on that branch</div>
+	</div>
 </div>

@@ -20,3 +20,16 @@ h3 {
     cursor: pointer;
     color: white;
 }
+
+div.control-text-description {
+	padding-top: 7px;
+}
+
+.input-area {
+	background-color: lightblue;
+	border: 2px solid grey;
+    border-radius: 5px;
+    width:100%;
+    display:inline-block;
+   	margin:0;
+}

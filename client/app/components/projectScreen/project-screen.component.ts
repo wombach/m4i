@@ -37,6 +37,7 @@ export class ProjectScreenComponent implements OnInit {
     user: string;
     selectedModel: ModelBackend;
     runningModels: ModelBackend[] = [];
+    loadModel: ModelBackend;
     
    // models: Model[];
     error: any;
@@ -49,6 +50,9 @@ export class ProjectScreenComponent implements OnInit {
         this.selectedModel = new ModelBackend();
         this.selectedModel.contentType = 'text/xml';
         this.selectedModel.parserName = 'archimate3';
+        this.loadModel = new ModelBackend();
+        this.loadModel.contentType = 'text/xml';
+        this.loadModel.parserName = 'archimate3';
     }
 
 
@@ -100,12 +104,28 @@ export class ProjectScreenComponent implements OnInit {
       this.selectedModel.branchName = this.selectedBranch.name;
       console.log(this.selectedModel);
       this.modelService
-          .getModel(this.selectedModel)
+          .putModel(this.selectedModel)
           .then(model => {
                 this.selectedModel = model; // saved hero, w/ id if new
                 this.goBack();
             })
             .catch(error => this.error = error); // TODO: Display error message
+    }
+  
+    retrieveModel() {
+      console.log("pressed retrieveModel");
+      this.loadModel.projectName = this.project.normalized_name;
+      this.loadModel.userid = this.project.committer;
+      this.loadModel.branchName = this.selectedBranch.name;
+      let obj: any;
+      console.log(this.loadModel);
+      this.modelService
+          .getModel(this.selectedModel)
+          .then((model: any) => {
+                obj = model; // saved hero, w/ id if new
+                this.goBack();
+            })
+            .catch((error: any) => this.error = error); // TODO: Display error message
     }
     
     changeBranch(branch: Project) {

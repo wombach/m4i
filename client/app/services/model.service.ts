@@ -126,7 +126,7 @@ export class ModelService {
         return Promise.reject(error.message || error);
     }
 
-    getModel(model: ModelBackend): Promise<ModelBackend> {
+    putModel(model: ModelBackend): Promise<ModelBackend> {
     if ( model.file_list.length > 0) {
         let file: File = model.file_list[0];
         let formData: FormData = new FormData();
@@ -160,6 +160,14 @@ export class ModelService {
 //            .catch(this.handleError);
     }
   }
+  getModel(model: ModelBackend): any {
+         let url = `${this.modelsUrl}?projectName=${model.projectName}&branchName=${model.branchName}&parserName=${model.parserName}&contentType=${model.contentType}&userid=${model.userid}`;
+        return this.http.get(url)
+            .toPromise()
+            //.then(response => response.json())
+            .catch(this.handleError);
+    }
+  
   
 //  addCookie(cName: string, cValue: string) {
 //    console.log('Adding: ', cName, cValue);

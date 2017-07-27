@@ -112,6 +112,19 @@ export class ProjectScreenComponent implements OnInit {
             .catch(error => this.error = error); // TODO: Display error message
     }
   
+    updateStatus() {
+      console.log("pressed updateStatus");
+      console.log(this.selectedModel.taskId);
+      let obj: any;
+      this.modelService
+          .getModelStatus(this.selectedModel)
+          .then((model: any) => {
+                obj = model; // saved hero, w/ id if new
+                this.goBack();
+            })
+            .catch((error: any) => this.error = error); // TODO: Display error message
+    }
+    
     retrieveModel() {
       console.log("pressed retrieveModel");
       this.loadModel.projectName = this.project.normalized_name;

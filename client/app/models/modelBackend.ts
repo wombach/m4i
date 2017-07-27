@@ -9,6 +9,6 @@ export class ModelBackend {
     userid: string;
     comment: string;
     contentType: string;
-    trackId: string;
+    taskId: string;
     version: string;
 }

@@ -14,12 +14,15 @@ import {ProjectService} from "../../services/project.service";
 import {ModelService} from "../../services/model.service";
 import { RequestOptions } from '@angular/http';
 import {BrowserXhr} from '@angular/http';
+//import * as FileSaver from 'file-saver';
 //import { Message } from '_debugger';
 //import { Cookie } from 'ng2-cookies';
 
 // import {SelectItem} from 'primeng/primeng';
 // import {FileDroppa} from 'file-droppa';
-// let fileSaver = require('filesaver.js');
+// let fileSaver = require('file-saver');
+//import saveAs = require('file-saver');
+//import saveAs from 'file-saver';
 
 @Component({
     selector: 'my-project-screen',
@@ -226,8 +229,8 @@ export class ProjectScreenComponent implements OnInit {
 //
 //            // If we get an HTTP status OK (200), save the file using fileSaver
 //            if(xhr.readyState === 4 && xhr.status === 200) {
-//                var blob = new Blob([this.response], {type: 'application/pdf'});
-//                fileSaver.saveAs(blob, 'Report.pdf');
+//                var blob = new Blob([this.response], {type: 'text.xml'});
+//                saveAs(blob, 'model.xml');
 //            }
 //        };
 //

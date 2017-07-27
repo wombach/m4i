@@ -56,8 +56,8 @@ export class ProjectScreenComponent implements OnInit {
         this.loadModel.contentType = 'text/xml';
         this.loadModel.parserName = 'archimate3';
         this.status = new Status();
-        this.status.state = 'completed';
-        this.selectedModel.taskId='15';
+//        this.status.state = 'completed';
+//        this.selectedModel.taskId='15';
     }
 
 
@@ -141,10 +141,10 @@ export class ProjectScreenComponent implements OnInit {
       console.log(this.loadModel);
       this.modelService
           .getModel(this.selectedModel)
-          .then((model: any) => {
-                obj = model; // saved hero, w/ id if new
-                this.goBack();
-            })
+//          .then((model: any) => {
+//                obj = model; // saved hero, w/ id if new
+//                //this.goBack();
+//            })
             .catch((error: any) => this.error = error); // TODO: Display error message
     }
     

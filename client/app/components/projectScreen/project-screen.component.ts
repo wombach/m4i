@@ -38,6 +38,7 @@ export class ProjectScreenComponent implements OnInit {
     selectedModel: ModelBackend;
     runningModels: ModelBackend[] = [];
     loadModel: ModelBackend;
+    status: string;
     
    // models: Model[];
     error: any;
@@ -107,7 +108,9 @@ export class ProjectScreenComponent implements OnInit {
           .putModel(this.selectedModel)
           .then(model => {
                 this.selectedModel = model; // saved hero, w/ id if new
-                this.goBack();
+                console.log(this.selectedModel);
+                this.updateStatus();
+                // this.goBack();
             })
             .catch(error => this.error = error); // TODO: Display error message
     }
@@ -120,11 +123,24 @@ export class ProjectScreenComponent implements OnInit {
           .getModelStatus(this.selectedModel)
           .then((model: any) => {
                 obj = model; // saved hero, w/ id if new
-                this.goBack();
+                this.status = this.translate(obj);
+                // this.goBack();
             })
             .catch((error: any) => this.error = error); // TODO: Display error message
     }
     
+    translate(obj: any): string {
+      /* 
+       * {'noNodes':118, 'noRelations:317, 'noViews':13, message:"model insertion complete", 'timestamp':1501156753655, 'state':"completed"}
+       * possible states: taken from class TaskState 
+       * CREATED ("created"), WAITING ("waiting"),  RUNNING ("running"),  COMPLETED ("completed"),  FAILURE ("failure");
+       */
+      let ret: string = "";
+      console.log(obj);
+      ret = obj.stringify();
+      return ret;
+    }
+  
     retrieveModel() {
       console.log("pressed retrieveModel");
       this.loadModel.projectName = this.project.normalized_name;

@@ -122,8 +122,11 @@
 					{{status.noRelations}} relations and {{status.noViews}} views have
 					been uploaded. <br /> Please retrieve the annotated model file.
 				</div>
-				<div class="col-sm-2">
+				<div *ngIf="!status.state=='completed'" class="col-sm-2">
 					<button (click)="updateStatus()" class="btn btn-primary">Refresh</button>
+				</div>
+				<div *ngIf="status.state=='completed'" class="col-sm-2">
+					<button (click)="retrieveModel()" class="btn btn-primary">Retrieve</button>
 				</div>
 			</div>
 			<div *ngIf="!selectedModel.taskId" class="form-group">

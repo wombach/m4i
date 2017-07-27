@@ -19,7 +19,7 @@ import {BrowserXhr} from '@angular/http';
 
 // import {SelectItem} from 'primeng/primeng';
 // import {FileDroppa} from 'file-droppa';
- let fileSaver = require('filesaver.js');
+// let fileSaver = require('filesaver.js');
 
 @Component({
     selector: 'my-project-screen',
@@ -142,9 +142,12 @@ export class ProjectScreenComponent implements OnInit {
       this.loadModel.projectName = this.project.normalized_name;
       this.loadModel.userid = this.project.committer;
       this.loadModel.branchName = this.selectedBranch.name;
-      let obj: any;
-      console.log(this.loadModel);
-      this.download(this.loadModel);
+      //let modelsUrl = 'http://192.168.2.10/RestApi/model';  // URL to web api
+        let url = `${this.modelService.modelsUrl}?projectName=${this.loadModel.projectName}&branchName=${this.loadModel.branchName}&parserName=${this.loadModel.parserName}&contentType=${this.loadModel.contentType}&userid=${this.loadModel.userid}`;
+      window.location.href = url;
+//      let obj: any;
+//      console.log(this.loadModel);
+//      this.download(this.loadModel);
 //      this.modelService
 //          .getModel(this.selectedModel)
 //          .then((model: any) => {
@@ -198,38 +201,38 @@ export class ProjectScreenComponent implements OnInit {
 //            .catch(error => this.error = error); // TODO: Display error message
     //}
 }
-  public download(model: ModelBackend) {
-        // Xhr creates new context so we need to create reference to this
-        let self = this;
-
-        // Status flag used in the template.
-        this.pending = true;
-
-        // Create the Xhr request object
-        let xhr = new XMLHttpRequest();
-        //let url =  `/api/pdf/iticket/${this.no}?lang=en`;
-    let modelsUrl = 'http://192.168.2.10/RestApi/model';  // URL to web api
-        let url = `${modelsUrl}?projectName=${model.projectName}&branchName=${model.branchName}&parserName=${model.parserName}&contentType=${model.contentType}&userid=${model.userid}`;
-    
-        xhr.open('GET', url, true);
-        xhr.responseType = 'blob';
-
-        // Xhr callback when we get a result back
-        // We are not using arrow function because we need the 'this' context
-        xhr.onreadystatechange = function() {
-
-            // We use setTimeout to trigger change detection in Zones
-            setTimeout( () => { self.pending = false; }, 0);
-
-            // If we get an HTTP status OK (200), save the file using fileSaver
-            if(xhr.readyState === 4 && xhr.status === 200) {
-                var blob = new Blob([this.response], {type: 'application/pdf'});
-                fileSaver.saveAs(blob, 'Report.pdf');
-            }
-        };
-
-        // Start the Ajax request
-        xhr.send();
-    }
+//  public download(model: ModelBackend) {
+//        // Xhr creates new context so we need to create reference to this
+//        let self = this;
+//
+//        // Status flag used in the template.
+//        this.pending = true;
+//
+//        // Create the Xhr request object
+//        let xhr = new XMLHttpRequest();
+//        //let url =  `/api/pdf/iticket/${this.no}?lang=en`;
+//    let modelsUrl = 'http://192.168.2.10/RestApi/model';  // URL to web api
+//        let url = `${modelsUrl}?projectName=${model.projectName}&branchName=${model.branchName}&parserName=${model.parserName}&contentType=${model.contentType}&userid=${model.userid}`;
+//    
+//        xhr.open('GET', url, true);
+//        xhr.responseType = 'blob';
+//
+//        // Xhr callback when we get a result back
+//        // We are not using arrow function because we need the 'this' context
+//        xhr.onreadystatechange = function() {
+//
+//            // We use setTimeout to trigger change detection in Zones
+//            setTimeout( () => { self.pending = false; }, 0);
+//
+//            // If we get an HTTP status OK (200), save the file using fileSaver
+//            if(xhr.readyState === 4 && xhr.status === 200) {
+//                var blob = new Blob([this.response], {type: 'application/pdf'});
+//                fileSaver.saveAs(blob, 'Report.pdf');
+//            }
+//        };
+//
+//        // Start the Ajax request
+//        xhr.send();
+//    }
   
 }

@@ -7,6 +7,7 @@ import {Project} from "../../models/project";
 // import {Screen} from "../../models/screen";
 // import {Model} from "../../models/model";
 import {ModelBackend} from "../../models/modelBackend";
+import {Status} from "../../models/status";
 
 import { ActivatedRoute, Params } from '@angular/router';
 import {ProjectService} from "../../services/project.service";
@@ -38,7 +39,7 @@ export class ProjectScreenComponent implements OnInit {
     selectedModel: ModelBackend;
     runningModels: ModelBackend[] = [];
     loadModel: ModelBackend;
-    status: string;
+    status: Status;
     
    // models: Model[];
     error: any;
@@ -54,6 +55,9 @@ export class ProjectScreenComponent implements OnInit {
         this.loadModel = new ModelBackend();
         this.loadModel.contentType = 'text/xml';
         this.loadModel.parserName = 'archimate3';
+        this.status = new Status();
+        this.status.state = 'completed';
+        this.selectedModel.taskId='15';
     }
 
 
@@ -93,7 +97,7 @@ export class ProjectScreenComponent implements OnInit {
             .save(this.project)
             .then(project => {
                 this.project = project; // saved hero, w/ id if new
-                this.goBack();
+                //this.goBack();
             })
             .catch(error => this.error = error); // TODO: Display error message
     }
@@ -121,26 +125,13 @@ export class ProjectScreenComponent implements OnInit {
       let obj: any;
       this.modelService
           .getModelStatus(this.selectedModel)
-          .then((model: any) => {
-                obj = model; // saved hero, w/ id if new
-                this.status = this.translate(obj);
+          .then((model: Status) => {
+                this.status = model; // saved hero, w/ id if new
                 // this.goBack();
             })
             .catch((error: any) => this.error = error); // TODO: Display error message
     }
-    
-    translate(obj: any): string {
-      /* 
-       * {'noNodes':118, 'noRelations:317, 'noViews':13, message:"model insertion complete", 'timestamp':1501156753655, 'state':"completed"}
-       * possible states: taken from class TaskState 
-       * CREATED ("created"), WAITING ("waiting"),  RUNNING ("running"),  COMPLETED ("completed"),  FAILURE ("failure");
-       */
-      let ret: string = "";
-      console.log(obj);
-      ret = obj.stringify();
-      return ret;
-    }
-  
+
     retrieveModel() {
       console.log("pressed retrieveModel");
       this.loadModel.projectName = this.project.normalized_name;

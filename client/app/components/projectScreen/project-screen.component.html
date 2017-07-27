@@ -82,7 +82,7 @@
 						placeholder="commit message" />
 				</div>
 			</div>
-			<div class="form-group">
+			<!-- div class="form-group">
 				<label class="col-sm-2 control-label">content type: </label>
 				<div class="col-sm-5">
 					<input class="form-control" style="width: 30px;" type="radio"
@@ -94,16 +94,39 @@
 						[(ngModel)]="selectedModel.contentType" name="contentType2"
 						value="application/json">application/json
 				</div>
-			</div>
+			</div-->
 			<div *ngIf="selectedModel.taskId" class="form-group">
 				<label class="col-sm-2 control-label">Status:</label>
-				<div class="col-sm-8 control-text-description">{{status}}
+				<div *ngIf="status=='created'"
+					class="col-sm-8 control-text-description">The file has been
+					uploaded but the file has not been processed by the repository.
+					Please check the status in a bit again. Sorry for the delay.</div>
+				<div *ngIf="status.state=='waiting'"
+					class="col-sm-8 control-text-description">The file has been
+					uploaded but the file has not been processed by the repository.
+					Please check the status in a bit again. Sorry for the delay.</div>
+				<div *ngIf="status.state=='running'"
+					class="col-sm-8 control-text-description">The upload is still
+					running. Until now {{status.noNodes}} nodes, {{status.noRelations}}
+					relations and {{status.noViews}} views have been uploaded.</div>
+				<div *ngIf="status.state=='failure'"
+					class="col-sm-8 control-text-description">
+					Unfortunately the upload has failed because of the following
+					reason: <br /> {{status.message}} <br /> After {{status.noNodes}}
+					nodes, {{status.noRelations}} relations and {{status.noViews}}
+					views had been uploaded.
+				</div>
+				<div *ngIf="status.state=='completed'"
+					class="col-sm-8 control-text-description">
+					The processing has been completed and {{status.noNodes}} nodes,
+					{{status.noRelations}} relations and {{status.noViews}} views have
+					been uploaded. <br /> Please retrieve the annotated model file.
+				</div>
 				<div class="col-sm-2">
 					<button (click)="updateStatus()" class="btn btn-primary">Refresh</button>
 				</div>
-				</div>
 			</div>
-			<div class="form-group">
+			<div *ngIf="!selectedModel.taskId" class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 					<button (click)="saveModel()" class="btn btn-primary">Commit</button>
 				</div>
@@ -114,15 +137,15 @@
 	<div class="input-area">
 		<h3>Retrieve a Model</h3>
 		<div>
-			<div class="form-group"></div>
+			<!-- div class="form-group"></div>
 			<label class="col-sm-2 control-label">Model Type: </label>
 			<div class="col-sm-10">
 				<select class="col-sm-10" [(ngModel)]="loadModel.parserName"
 					(ngModelChange)="onChange($event)">
 					<option vakue="archimate3">archimate3</option>
 				</select>
-			</div>
-			<div class="form-group">
+			</div-->
+			<!-- div class="form-group">
 				<label class="col-sm-2 control-label">content type: </label>
 				<div class="col-sm-5">
 					<input class="form-control" style="width: 30px;" type="radio"
@@ -134,10 +157,10 @@
 						[(ngModel)]="loadModel.contentType" name="contentType"
 						value="application/json">application/json
 				</div>
-			</div>
+			</div-->
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button (click)="retrieveModel()" class="btn btn-primary">Commit</button>
+					<button (click)="retrieveModel()" class="btn btn-primary">Retrieve</button>
 				</div>
 			</div>
 		</div>

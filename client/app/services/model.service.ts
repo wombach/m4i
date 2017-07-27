@@ -160,12 +160,12 @@ export class ModelService {
 //            .catch(this.handleError);
     }
   }
-  getModel(model: ModelBackend): Observable<any>  {
+  getModel(model: ModelBackend): any  {
          let url = `${this.modelsUrl}?projectName=${model.projectName}&branchName=${model.branchName}&parserName=${model.parserName}&contentType=${model.contentType}&userid=${model.userid}`;
         return this.http.get(url)
-          .flatMap((data) => data.json())
-            //.toPromise()
-            //.then(response => response.json())
+          //.flatMap((data) => data.json())
+            .toPromise()
+            .then(response => response.json())
             .catch(this.handleError);
     }
   

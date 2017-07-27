@@ -11,6 +11,7 @@ import { Headers, Http, Response, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import {Project} from "../models/project";
 import {ModelBackend} from "../models/modelBackend";
+import {Status} from "../models/status";
 import {WpUser} from "../models/wpUser";
 // import { Observable } from 'rxjs';
 import { Observable } from 'rxjs/Rx';
@@ -160,12 +161,12 @@ export class ModelService {
 //            .catch(this.handleError);
     }
   }
-  getModelStatus(model: ModelBackend): any  {
+  getModelStatus(model: ModelBackend): Promise<Status>  {
          let url = `${this.modelsUrl}?&taskId=${model.taskId}`;
         return this.http.get(url)
-          .flatMap((data) => data.json())
-            //.toPromise()
-            //.then(response => response.json())
+          //.flatMap((data) => data.json())
+            .toPromise()
+            .then(response => response.json())
             .catch(this.handleError);
     }
   

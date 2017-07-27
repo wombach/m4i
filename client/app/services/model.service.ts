@@ -139,12 +139,12 @@ export class ModelService {
         formData.append('userid', model.userid);
         let headers = new Headers();
         /** No need to include Content-Type in Angular 4 */
-        headers.append('Content-Type', 'multipart/form-data');
+        //headers.append('Content-Type', 'multipart/form-data');
         headers.append('Accept', 'application/json');
         let options = new RequestOptions({ headers: headers });
         return this.http.post(this.modelsUrl, formData, options)
             .toPromise()
-            //.map(res => res.json())
+//            .map(res => res.json())
             .then(response => response.json())
             .catch(this.handleError);
 //            .map(res => res.json())
@@ -160,10 +160,11 @@ export class ModelService {
 //            .catch(this.handleError);
     }
   }
-  getModel(model: ModelBackend): any {
+  getModel(model: ModelBackend): Observable<any>  {
          let url = `${this.modelsUrl}?projectName=${model.projectName}&branchName=${model.branchName}&parserName=${model.parserName}&contentType=${model.contentType}&userid=${model.userid}`;
         return this.http.get(url)
-            .toPromise()
+          .flatMap((data) => data.json())
+            //.toPromise()
             //.then(response => response.json())
             .catch(this.handleError);
     }

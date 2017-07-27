@@ -13,32 +13,25 @@ import {Project} from "../models/project";
 import {ModelBackend} from "../models/modelBackend";
 import {Status} from "../models/status";
 import {WpUser} from "../models/wpUser";
-// import { Observable } from 'rxjs';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
-// var WPAPI = require( 'wpapi' );
-// import { WpApiPosts, WpApiPages, WpApiComments, WpApiTypes, WpApiMedia, WpApiUsers, WpApiTaxonomies, WpApiStatuses, WpApiTerms, WpApiCustom} from 'wp-api-angular';
-// import { CookieService } from 'ng2-cookies';
+
 
     
 @Injectable()
 export class ModelService {
 
     private modelsUrl = 'http://192.168.2.10/RestApi/model';  // URL to web api
-//    private branchesUrl = 'api/branches';  // URL to web api
-//    private modelsUrl = 'api/projects';  // URL to web api
     private apiEndPoint = 'http://192.168.2.10/wp-json/wp/v2/users';
     //private wp = new WPAPI({ endpoint: 'http://192.168.2.10/wp-json' });
     //private wpApiUsers: WpApiUsers;
     //private res : any;
   
     constructor(private http: Http
-//              ,  public cookieService: CookieService 
             ) { }
 
-    getWpUsers() : Observable<any> { //: Promise<any> {
+    getWpUsers() : Observable<any> { 
         return this.http.get(this.apiEndPoint)
-            //.toPromise()
           .flatMap((data) => data.json())
           //.map((res:Response) => res.json() as WpUser[])
                          //...errors if any
@@ -47,80 +40,6 @@ export class ModelService {
 //            .then((response: any) => response.json())
 //            .catch(this.handleError);
     }
-  
-//    getProjects(): Promise<Project[]> {
-//        return this.http.get(this.projectsUrl)
-//            .toPromise()
-//            .then(response => response.json())
-//            .catch(this.handleError);
-//    }
-    
-//    getProjects(committer: string): Promise<Project[]> {
-//        let url = `${this.projectsUrl}/${committer}`;
-//        return this.http.get(url)
-//            .toPromise()
-//            .then(response => response.json())
-//            .catch(this.handleError);
-//    }
-//    
-//    getBranches(id: string): Promise<Project[]> {
-//        let url = `${this.branchesUrl}/${id}`;
-//        return this.http.get(url)
-//            .toPromise()
-//            .then(response => response.json())
-//            .catch(this.handleError);
-//    }
-//
-//    getProject(id: string) {
-//        return this.http.get(this.projectsUrl + '/' + id)
-//            .toPromise()
-//            .then(response => response.json())
-//            .catch(this.handleError);
-//    }
-//
-//    save(project: Project): Promise<Project>  {
-//        if (project._id) {
-//            return this.put(project);
-//        }
-//      console.log("service save")
-//        return this.post(project);
-//    }
-//
-//    private post(project: Project): Promise<Project> {
-//        let headers = new Headers({
-//            'Content-Type': 'application/json'});
-//
-//        return this.http
-//            .post(this.projectsUrl, JSON.stringify(project), {headers:headers})
-//            .toPromise()
-//            .then(response => response.json())
-//            .catch(this.handleError);
-//    }
-//
-//    private put(project: Project) {
-//        let headers = new Headers();
-//        headers.append('Content-Type', 'application/json');
-//
-//        let url = `${this.projectsUrl}/${project._id}`;
-//
-//        return this.http
-//            .put(url, JSON.stringify(project), {headers: headers})
-//            .toPromise()
-//            .then(() => project)
-//            .catch(this.handleError);
-//    }
-//
-//    delete(project: Project) {
-//        let headers = new Headers();
-//        headers.append('Content-Type', 'application/json');
-//
-//        let url = `${this.projectsUrl}/${project._id}`;
-//
-//        return this.http
-//            .delete(url, headers)
-//            .toPromise()
-//            .catch(this.handleError);
-//    }
 
     private handleError(error: any) {
         console.error('An error occurred', error);
@@ -173,7 +92,7 @@ export class ModelService {
   getModel(model: ModelBackend): any  {
          let url = `${this.modelsUrl}?projectName=${model.projectName}&branchName=${model.branchName}&parserName=${model.parserName}&contentType=${model.contentType}&userid=${model.userid}`;
         return this.http.get(url)
-          .flatMap((data) => data.json())
+          //.flatMap((data) => data.json())
             //.toPromise()
             //.then(response => response.json())
             .catch(this.handleError);

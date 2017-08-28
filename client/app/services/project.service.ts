@@ -22,7 +22,7 @@ export class ProjectService {
     private projectsUrl = 'api/projects';  // URL to web api
     private branchesUrl = 'api/branches';  // URL to web api
     private modelsUrl = 'api/projects';  // URL to web api
-    private apiEndPoint = 'http://192.168.2.10/wp-json/wp/v2/users';
+    private apiEndPoint = 'http://145.130.172.196/wp-json/wp/v2/users';
     //private wp = new WPAPI({ endpoint: 'http://192.168.2.10/wp-json' });
     //private wpApiUsers: WpApiUsers;
     //private res : any;

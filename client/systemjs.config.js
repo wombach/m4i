@@ -8,6 +8,7 @@ var isPublic = typeof window != "undefined";
     'rxjs':                       (isPublic)? 'rxjs' : 'node_modules/rxjs',
     'ng2-cookies': 				  (isPublic)? 'ng2-cookies' : 'node_modules/ng2-cookies',
     'primeng': 		      (isPublic)? 'primeng' : 'node_modules/primeng',	
+   // 'd3-ng2-service':     		(isPublic)? 'd3-ng2-service' : 'node_modules/d3-ng2-service',
   };
   // packages tells the System loader how to load when no filename and/or no extension
   var packages = {

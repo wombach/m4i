@@ -21,8 +21,8 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ModelService {
 
-    public modelsUrl = 'http://192.168.2.10/RestApi/model';  // URL to web api
-    private apiEndPoint = 'http://192.168.2.10/wp-json/wp/v2/users';
+    public modelsUrl = 'http://145.130.172.196/RestApi/model';  // URL to web api
+    private apiEndPoint = 'http://145.130.172.196/wp-json/wp/v2/users';
     //private wp = new WPAPI({ endpoint: 'http://192.168.2.10/wp-json' });
     //private wpApiUsers: WpApiUsers;
     //private res : any;

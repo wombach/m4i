@@ -16,6 +16,9 @@ import { ExternalHtmlComponent }   from './components/externalHtml/external_html
 import { FrontComponent }   from './components/front/front.component';
 import { ProjectDetailComponent }  from './components/projectDetail/project-detail.component';
 import { ProjectScreenComponent }  from './components/projectScreen/project-screen.component';
+import { ModelConflictComponent }  from './components/modelConflict/model-conflict.component';
+import { ModelHistoryComponent }  from './components/modelHistory/model-history.component';
+
 //import {TabViewModule} from 'primeng/primeng';
 
 
@@ -26,6 +29,7 @@ import { ModelService }  from './services/model.service';
 // export function WpApiLoaderFactory(http: Http) {
 //  return new WpApiStaticLoader(http, 'http://192.168.2.10/wp-json/', /* namespace is optional, default: '/wp/v2' */);
 // }
+// import { D3Service } from 'd3-ng2-service'; // <-- import statement
 
 @NgModule({
   imports: [
@@ -44,12 +48,15 @@ import { ModelService }  from './services/model.service';
     FrontComponent,
     ProjectDetailComponent,
     ProjectScreenComponent,
+    ModelConflictComponent,
+    // ModelHistoryComponent,
     WpPageComponent,
     ExternalHtmlComponent,
   ],
   providers: [
     ProjectService,
     ModelService,
+  //  D3Service, // <-- provider registration
   ],
   bootstrap: [AppComponent]
 })

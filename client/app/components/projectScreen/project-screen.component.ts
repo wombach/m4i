@@ -23,6 +23,7 @@ import {BrowserXhr} from '@angular/http';
 // let fileSaver = require('file-saver');
 //import saveAs = require('file-saver');
 //import saveAs from 'file-saver';
+ //let saveAs = require('filesaver.js');
 
 @Component({
     selector: 'my-project-screen',
@@ -32,7 +33,7 @@ import {BrowserXhr} from '@angular/http';
   })
 
 export class ProjectScreenComponent implements OnInit {
-    @Input() screen: Screen; 
+    @Input()
     project: Project;
     editDocumentation = false;
     branches: Project[];
@@ -44,9 +45,9 @@ export class ProjectScreenComponent implements OnInit {
     runningModels: ModelBackend[] = [];
     loadModel: ModelBackend;
     status: Status;
-  public pending:boolean = false;
-  no: any;
-  
+//  public pending:boolean = false;
+//  no: any;
+//  
     
    // models: Model[];
     error: any;
@@ -148,6 +149,7 @@ export class ProjectScreenComponent implements OnInit {
       //let modelsUrl = 'http://192.168.2.10/RestApi/model';  // URL to web api
         let url = `${this.modelService.modelsUrl}?projectName=${this.loadModel.projectName}&branchName=${this.loadModel.branchName}&parserName=${this.loadModel.parserName}&contentType=${this.loadModel.contentType}&userid=${this.loadModel.userid}`;
       window.location.href = url;
+//       this.download(this.loadModel);
 //      let obj: any;
 //      console.log(this.loadModel);
 //      this.download(this.loadModel);
@@ -216,7 +218,7 @@ export class ProjectScreenComponent implements OnInit {
 //        //let url =  `/api/pdf/iticket/${this.no}?lang=en`;
 //    let modelsUrl = 'http://192.168.2.10/RestApi/model';  // URL to web api
 //        let url = `${modelsUrl}?projectName=${model.projectName}&branchName=${model.branchName}&parserName=${model.parserName}&contentType=${model.contentType}&userid=${model.userid}`;
-//    
+//        url = "http://192.168.2.7:3000/index.html";
 //        xhr.open('GET', url, true);
 //        xhr.responseType = 'blob';
 //
@@ -229,7 +231,7 @@ export class ProjectScreenComponent implements OnInit {
 //
 //            // If we get an HTTP status OK (200), save the file using fileSaver
 //            if(xhr.readyState === 4 && xhr.status === 200) {
-//                var blob = new Blob([this.response], {type: 'text.xml'});
+//                var blob = new Blob([this.response], {type: 'text/xml'});
 //                saveAs(blob, 'model.xml');
 //            }
 //        };

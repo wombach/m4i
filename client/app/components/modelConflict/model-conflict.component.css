@@ -1,0 +1,35 @@
+h3 {
+    text-align: center; margin-bottom: 10;
+}
+[class*='col-'] {
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+.module {
+    padding: 20px;
+    text-align: center;
+    color: #eee;
+    max-height: 120px;
+    min-width: 120px;
+    background-color: orangered;
+    border-radius: 2px;
+}
+
+.module:hover {
+    background-color: darkred;
+    cursor: pointer;
+    color: white;
+}
+
+div.control-text-description {
+	padding-top: 7px;
+}
+
+.input-area {
+	background-color: lightblue;
+	border: 2px solid grey;
+    border-radius: 5px;
+    width:100%;
+    display:inline-block;
+   	margin:0;
+}

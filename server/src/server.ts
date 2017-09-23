@@ -1,6 +1,7 @@
 import express = require('express');
 import BaseRoutes = require("./config/routes/Routes");
 import bodyParser = require("body-parser");
+//var cors = require('cors');
 
 import path = require('path');
 var port: number = process.env.PORT || 3000;
@@ -8,7 +9,16 @@ var env:string = process.env.NODE_ENV || 'developement';
 
 var app = express();
 
+//var cors = function (req: any, res: any, next: any) {
+//  res.setHeader('Access-Control-Allow-Origin', '*');
+//  res.setHeader('Access-Control-Allow-Headers', 'application/json');
+//  next();
+//};
+
+
 app.set('port', port);
+
+//app.use(cors);
 
 app.use('/app', express.static(path.resolve(__dirname, '../client/app')));
 app.use('/libs', express.static(path.resolve(__dirname, '../client/libs')));
